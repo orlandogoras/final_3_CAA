@@ -143,6 +143,22 @@
             background-color: var(--border-color);
         }
 
+        .btn-tool {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .btn-tool.active-tool {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
         nav.nav-tabs {
             background-color: var(--bg-card);
             display: flex;
@@ -328,15 +344,15 @@
             background: var(--bg-main);
             padding: 0.5rem;
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
             border-bottom: 1px solid var(--border-color);
             flex-wrap: wrap;
         }
 
         .color-btn {
-            width: 24px;
-            height: 24px;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             border: 2px solid white;
             cursor: pointer;
@@ -430,7 +446,7 @@
                 </div>
                 <div class="card">
                     <h3 id="feat-2-title">🎨 Interactive Tools & Canvas</h3>
-                    <p id="feat-2-desc">Every problem features a precise drawing canvas, dynamic random value generators with diverse problem models, and snapshot capture tools with clipboard copy and file download options!</p>
+                    <p id="feat-2-desc">Every problem features a precise drawing canvas with pen, straight lines, rectangles, stroke eraser, and snapshot capture tools!</p>
                 </div>
             </div>
         </section>
@@ -552,7 +568,7 @@
                 feat1Title: "🎯 What You Will Master",
                 feat1Desc: "Multiplication tables, regrouping zeros in subtraction, fractions, pictograms, multiplication properties, order of operations, and smart financial & spatial problem solving for 3rd grade!",
                 feat2Title: "🎨 Interactive Tools & Canvas",
-                feat2Desc: "Every problem features a precise drawing canvas, dynamic random value generators with diverse problem models, and snapshot capture tools with clipboard copy and file download options!",
+                feat2Desc: "Every problem features a precise drawing canvas with pen, straight lines, rectangles, stroke eraser, and snapshot capture tools!",
                 theoryHeading: "📖 Complete 3rd Grade Math Guide (Ages 8-10)",
                 theorySubheading: "Click on any topic to explore definitions, key info, and real-world application examples!",
                 labHeading: "🧪 Interactive Math Lab (SVG & Visualizer)",
@@ -587,17 +603,17 @@
                         title: "1. Multiplication Tables in Real Contexts (Tablas de multiplicar)",
                         def: "Multiplication is fast repeated addition! For 3rd grade, we use multiplication to calculate weekly savings budgets, rectangular garden areas, and ticket costs.",
                         ex1Title: "Example 1: Weekly Savings Budget",
-                        ex1Text: "If you save $7,000 pesos every week for 8 weeks in your piggy bank, how much do you save in total? Calculation: 7,000 × 8 = 56,000 pesos.",
+                        ex1Text: "If you save $7 000 pesos every week for 8 weeks in your piggy bank, how much do you save in total? Calculation: 7 000 × 8 = 56 000 pesos.",
                         ex2Title: "Example 2: Spatial Classroom Arrangement",
                         ex2Text: "A robotics workshop has 6 rows of tables with 9 student kits on each row. Total student kits = 6 × 9 = 54 kits."
                     },
                     {
                         title: "2. Addition & Subtraction with Zeros in the Minuend (Suma y resta con ceros)",
-                        def: "When subtracting from a number with zeros (like 1,000 or 5,000 pesos) when buying items or calculating change, you must regroup carefully across neighboring place values.",
+                        def: "When subtracting from a number with zeros (like 1 000 or 5 000 pesos) when buying items or calculating change, you must regroup carefully across neighboring place values.",
                         ex1Title: "Example 1: Shopping & Change",
-                        ex1Text: "You have a $1,000 peso bill and buy a notebook for $365 pesos. What is your change? 1,000 - 365 = 635 pesos.",
+                        ex1Text: "You have a $1 000 peso bill and buy a notebook for $365 pesos. What is your change? 1 000 - 365 = 635 pesos.",
                         ex2Title: "Example 2: Financial Savings Goal",
-                        ex2Text: "You aim to save $5,000 pesos for a science kit. You currently have $2,180 pesos. How much more do you need to save? 5,000 - 2,180 = 2,820 pesos."
+                        ex2Text: "You aim to save $5 000 pesos for a science kit. You currently have $2 180 pesos. How much more do you need to save? 5 000 - 2 180 = 2 820 pesos."
                     },
                     {
                         title: "3. Fractions, Pictograms & Data Analysis (Fracciones y pictogramas)",
@@ -611,10 +627,10 @@
                         title: "4. Multiplication Properties (Propiedades de la multiplicación)",
                         def: "Multiplication rules that streamline calculations. Each property is described below:<br>" +
                              "<ul class='property-list'>" +
-                             "<li><b>Commutative property:</b> Changing the order of factors does not change the product ($a \times b = b \times a$).</li>" +
-                             "<li><b>Associative property:</b> Grouping factors differently does not change the product ($(a \times b) \times c = a \times (b \times c)$).</li>" +
-                             "<li><b>Modulative (Identity) property:</b> Multiplying any number by 1 gives the same number ($a \times 1 = a$).</li>" +
-                             "<li><b>Annulative property:</b> Multiplying any number by 0 results in zero ($a \times 0 = 0$).</li>" +
+                             "<li><b>Commutative property:</b> Changing the order of factors does not change the product (a × b = b × a).</li>" +
+                             "<li><b>Associative property:</b> Grouping factors differently does not change the product ((a × b) × c = a × (b × c)).</li>" +
+                             "<li><b>Modulative (Identity) property:</b> Multiplying any number by 1 gives the same number (a × 1 = a).</li>" +
+                             "<li><b>Annulative property:</b> Multiplying any number by 0 results in zero (a × 0 = 0).</li>" +
                              "</ul>" +
                              "Note: No distributive property here!",
                         ex1Title: "Example 1: Commutative Property in Arrays",
@@ -634,17 +650,17 @@
                         title: "6. Situations with 2+ Operations & Financial Literacy",
                         def: "Real-life problems for 3rd grade combining earnings, savings, budgeting, and multiple operations.",
                         ex1Title: "Example 1: Allowance & Bookstore Expense",
-                        ex1Text: "You earn $4,000 pesos allowance every day for 5 days. You spend $12,000 pesos on a graphic novel. How much do you have left? Total earned = 4,000 × 5 = 20,000. Remaining = 20,000 - 12,000 = 8,000 pesos.",
+                        ex1Text: "You earn $4 000 pesos allowance every day for 5 days. You spend $12 000 pesos on a graphic novel. How much do you have left? Total earned = 4 000 × 5 = 20 000. Remaining = 20 000 - 12 000 = 8 000 pesos.",
                         ex2Title: "Example 2: Buying Snacks for Study Group",
-                        ex2Text: "You buy 3 juices at $2,500 each and 2 cookies at $1,500 each. You pay with a $20,000 bill. Total cost = (3 × 2,500) + (2 × 1,500) = 10,500. Change = 20,000 - 10,500 = 9,500 pesos."
+                        ex2Text: "You buy 3 juices at $2 500 each and 2 cookies at $1 500 each. You pay with a $20 000 bill. Total cost = (3 × 2 500) + (2 × 1 500) = 10 500. Change = 20 000 - 10 500 = 9 500 pesos."
                     },
                     {
                         title: "7. Multiplication & Abbreviated Multiplication (Multiplicación abreviada)",
                         def: "Multiplying by powers of 10 (10, 100) is super fast! Just append the exact number of zeros to the original number for quick estimation.",
                         ex1Title: "Example 1: Multiplying by 100 for Bulk Supplies",
-                        ex1Text: "45 packs of notebooks with 100 sheets each = 45 × 100 = 4,500 total sheets (just add two zeros).",
+                        ex1Text: "45 packs of notebooks with 100 sheets each = 45 × 100 = 4 500 total sheets (just add two zeros).",
                         ex2Title: "Example 2: Multiplying by 10",
-                        ex2Text: "320 boxes with 10 crayons each = 320 × 10 = 3,200 crayons (add one zero)."
+                        ex2Text: "320 boxes with 10 crayons each = 320 × 10 = 3 200 crayons (add one zero)."
                     }
                 ]
             },
@@ -655,13 +671,13 @@
                 navLab: "🧪 Laboratorio SVG",
                 navQuiz: "📝 Práctica de Examen",
                 homeWelcome: "¡Bienvenido a MathAdventure 3° Grado! 🌟",
-                homeSubtitle: "¡Prepárate para conquistar tu examen de tercer grado  con laboratorios interactivos, teoría con educación financiera, pensamiento espacial y análisis de datos!",
+                homeSubtitle: "¡Prepárate para conquistar tu examen de tercer grado con laboratorios interactivos, teoría con educación financiera, pensamiento espacial y análisis de datos!",
                 btnStartTheory: "Empezar a Estudiar Teoría",
                 btnStartQuiz: "Hacer Examen de Práctica",
                 feat1Title: "🎯 Lo que vas a dominar",
                 feat1Desc: "Tablas de multiplicar, restas con ceros en el minuendo, fracciones, pictogramas, propiedades, jerarquía y problemas de educación financiera y espacial para 3° grado.",
                 feat2Title: "🎨 Herramientas y Lienzo",
-                feat2Desc: "Cada problema incluye lienzo de dibujo preciso, modelos de problemas variados con valores aleatorios, y botones de captura con copiado al portapapeles y descarga de imagen.",
+                feat2Desc: "Cada problema incluye lienzo con pincel, líneas rectas, rectángulos, borrador de trazos precisos y botones de captura o descarga.",
                 theoryHeading: "📖 Guía Completa de Matemáticas 3° ",
                 theorySubheading: "¡Haz clic en cualquier tema para ver definiciones, información clave y ejemplos de situaciones reales!",
                 labHeading: "🧪 Laboratorio Matemático Interactivo (SVG)",
@@ -696,17 +712,17 @@
                         title: "1. Tablas de multiplicar en contextos reales",
                         def: "¡La multiplicación es una suma abreviada! Para tercer grado, la usamos para calcular presupuestos de ahorro semanal, áreas de huertas rectangulares y costos de entradas.",
                         ex1Title: "Ejemplo 1: Ahorro semanal y presupuesto",
-                        ex1Text: "Si ahorras $7,000 pesos cada semana durante 8 semanas en tu alcancía, ¿cuánto ahorras en total? Operación: 7,000 × 8 = 56,000 pesos.",
+                        ex1Text: "Si ahorras $7 000 pesos cada semana durante 8 semanas en tu alcancía, ¿cuánto ahorras en total? Operación: 7 000 × 8 = 56 000 pesos.",
                         ex2Title: "Ejemplo 2: Acomodo espacial en el aula",
                         ex2Text: "Un taller de robótica tiene 6 filas de mesas con 9 kits de estudiantes en cada fila. Total de kits = 6 × 9 = 54 kits."
                     },
                     {
                         title: "2. Suma y resta con ceros en el minuendo",
-                        def: "Cuando restas a un número lleno de ceros (como 1,000 o 5,000 pesos) al comprar o calcular devueltas, debes desagrupar con cuidado entre las posiciones vecinas.",
+                        def: "Cuando restas a un número lleno de ceros (como 1 000 o 5 000 pesos) al comprar o calcular devueltas, debes desagrupar con cuidado entre las posiciones vecinas.",
                         ex1Title: "Ejemplo 1: Compras y devueltas",
-                        ex1Text: "Tienes un billete de $1,000 pesos y compras un cuaderno por $365 pesos. ¿Cuánto te dan de cambio? 1,000 - 365 = 635 pesos.",
+                        ex1Text: "Tienes un billete de $1 000 pesos y compras un cuaderno por $365 pesos. ¿Cuánto te dan de cambio? 1 000 - 365 = 635 pesos.",
                         ex2Title: "Ejemplo 2: Meta de ahorro financiero",
-                        ex2Text: "Quieres comprar un kit de ciencia de $5,000 pesos. Ya tienes ahorrados $2,180 pesos. ¿Cuánto te falta por ahorrar? 5,000 - 2,180 = 2,820 pesos."
+                        ex2Text: "Quieres comprar un kit de ciencia de $5 000 pesos. Ya tienes ahorrados $2 180 pesos. ¿Cuánto te falta por ahorrar? 5 000 - 2 180 = 2 820 pesos."
                     },
                     {
                         title: "3. Fracciones, pictogramas y análisis de datos",
@@ -720,10 +736,10 @@
                         title: "4. Propiedades de la multiplicación",
                         def: "Reglas clave de la multiplicación. Cada propiedad se presenta a continuación en su propio renglón:<br>" +
                              "<ul class='property-list'>" +
-                             "<li><b>Propiedad Conmutativa:</b> El orden de los factores no altera el producto ($a \times b = b \times a$).</li>" +
-                             "<li><b>Propiedad Asociativa:</b> La forma de agrupar los factores no cambia el resultado final ($(a \times b) \times c = a \times (b \times c)$).</li>" +
-                             "<li><b>Propiedad Modulativa o Elemento Neutro:</b> Multiplicar cualquier número por 1 da como resultado el mismo número ($a \times 1 = a$).</li>" +
-                             "<li><b>Propiedad Anulativa:</b> Multiplicar cualquier número por 0 da siempre como resultado cero ($a \times 0 = 0$).</li>" +
+                             "<li><b>Propiedad Conmutativa:</b> El orden de los factores no altera el producto (a × b = b × a).</li>" +
+                             "<li><b>Propiedad Asociativa:</b> La forma de agrupar los factores no cambia el resultado final ((a × b) × c = a × (b × c)).</li>" +
+                             "<li><b>Propiedad Modulativa o Elemento Neutro:</b> Multiplicar cualquier número por 1 da como resultado el mismo número (a × 1 = a).</li>" +
+                             "<li><b>Propiedad Anulativa:</b> Multiplicar cualquier número por 0 da siempre como resultado cero (a × 0 = 0).</li>" +
                              "</ul>" +
                              "¡Sin propiedad distributiva!",
                         ex1Title: "Ejemplo 1: Propiedad Conmutativa espacial",
@@ -743,17 +759,17 @@
                         title: "6. Situaciones con 2 o más operaciones (Educación financiera)",
                         def: "Problemas de la vida real para tercer grado combinando ingresos, ahorros, presupuestos y múltiples operaciones aritméticas.",
                         ex1Title: "Ejemplo 1: Mesada y gasto en librería",
-                        ex1Text: "Recibes $4,000 pesos de mesada diaria durante 5 días. Gastas $12,000 pesos en una novela gráfica. ¿Cuánto te queda? Total ganado = 4,000 × 5 = 20,000. Restante = 20,000 - 12,000 = 8,000 pesos.",
+                        ex1Text: "Recibes $4 000 pesos de mesada diaria durante 5 días. Gastas $12 000 pesos en una novela gráfica. ¿Cuánto te queda? Total ganado = 4 000 × 5 = 20 000. Restante = 20 000 - 12 000 = 8 000 pesos.",
                         ex2Title: "Ejemplo 2: Comprando merienda para el grupo",
-                        ex2Text: "Compras 3 jugos a $2,500 cada uno y 2 galletas a $1,500. Pagas con un billete de $20,000. Costo total = (3 × 2,500) + (2 × 1,500) = 10,500. Cambio = 20,000 - 10,500 = 9,500 pesos."
+                        ex2Text: "Compras 3 jugos a $2 500 cada uno y 2 galletas a $1 500. Pagas con un billete de $20 000. Costo total = (3 × 2 500) + (2 × 1 500) = 10 500. Cambio = 20 000 - 10 500 = 9 500 pesos."
                     },
                     {
                         title: "7. Multiplicación y multiplicación abreviada",
                         def: "¡Multiplicar por potencias de 10 (10, 100) es rapidísimo! Solo agrega la cantidad exacta de ceros al número original.",
                         ex1Title: "Ejemplo 1: Multiplicar por 100 para papelería",
-                        ex1Text: "45 paquetes de cuadernos con 100 hojas cada uno = 45 × 100 = 4,500 hojas en total (agregas dos ceros).",
+                        ex1Text: "45 paquetes de cuadernos con 100 hojas cada uno = 45 × 100 = 4 500 hojas en total (agregas dos ceros).",
                         ex2Title: "Ejemplo 2: Multiplicar por 10",
-                        ex2Text: "320 cajas con 10 crayones cada una = 320 × 10 = 3,200 crayones (agregas un cero)."
+                        ex2Text: "320 cajas con 10 crayones cada una = 320 × 10 = 3 200 crayones (agregas un cero)."
                     }
                 ]
             }
@@ -962,32 +978,70 @@
         renderOpsStep();
 
 
-        /* --- DRAWING CANVAS & SNAPSHOT LOGIC --- */
+        /* --- ADVANCED DRAWING CANVAS (PEN, LINE, RECT, STROKE ERASER) --- */
         function initDrawingPad(canvas) {
             const ctx = canvas.getContext('2d');
             let isDrawing = false;
-            let lastX = 0;
-            let lastY = 0;
+            let startX = 0, startY = 0;
+            let currentTool = 'pen'; // 'pen', 'line', 'rect', 'eraser'
             let currentColor = '#1e293b';
             let currentWidth = 3;
+            let strokes = []; // Vectorial stroke objects
 
             const wrapper = canvas.parentElement;
             const toolbar = wrapper.querySelector('.drawing-toolbar');
             
+            function redraw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                strokes.forEach(s => {
+                    ctx.save();
+                    ctx.strokeStyle = s.color;
+                    ctx.fillStyle = s.color;
+                    ctx.lineWidth = s.width;
+                    ctx.lineCap = 'round';
+                    ctx.lineJoin = 'round';
+
+                    if (s.type === 'pen') {
+                        if (s.points && s.points.length > 1) {
+                            ctx.beginPath();
+                            ctx.moveTo(s.points[0].x, s.points[0].y);
+                            for (let i = 1; i < s.points.length; i++) {
+                                ctx.lineTo(s.points[i].x, s.points[i].y);
+                            }
+                            ctx.stroke();
+                        }
+                    } else if (s.type === 'line') {
+                        ctx.beginPath();
+                        ctx.moveTo(s.x1, s.y1);
+                        ctx.lineTo(s.x2, s.y2);
+                        ctx.stroke();
+                    } else if (s.type === 'rect') {
+                        ctx.strokeRect(s.x, s.y, s.w, s.h);
+                    }
+                    ctx.restore();
+                });
+            }
+
             toolbar.innerHTML = `
-                <span style="font-size:0.8rem; font-weight:600;">🖌️ Sketchpad:</span>
+                <button class="btn-tool active-tool" id="${canvas.id}-btn-pen" onclick="setCanvasTool('${canvas.id}', 'pen')" title="Pincel">✏️</button>
+                <button class="btn-tool" id="${canvas.id}-btn-line" onclick="setCanvasTool('${canvas.id}', 'line')" title="Línea recta">📏</button>
+                <button class="btn-tool" id="${canvas.id}-btn-rect" onclick="setCanvasTool('${canvas.id}', 'rect')" title="Rectángulo">⬛</button>
+                <button class="btn-tool" id="${canvas.id}-btn-eraser" onclick="setCanvasTool('${canvas.id}', 'eraser')" title="Borrador de trazo">🧹</button>
                 <div class="color-btn" style="background:#1e293b;" onclick="setCanvasColor('${canvas.id}', '#1e293b')"></div>
                 <div class="color-btn" style="background:#4f46e5;" onclick="setCanvasColor('${canvas.id}', '#4f46e5')"></div>
                 <div class="color-btn" style="background:#06b6d4;" onclick="setCanvasColor('${canvas.id}', '#06b6d4')"></div>
                 <div class="color-btn" style="background:#ef4444;" onclick="setCanvasColor('${canvas.id}', '#ef4444')"></div>
                 <div class="color-btn" style="background:#10b981;" onclick="setCanvasColor('${canvas.id}', '#10b981')"></div>
-                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="setCanvasWidth('${canvas.id}', 2)">Thin</button>
-                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="setCanvasWidth('${canvas.id}', 6)">Thick</button>
-                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="clearCanvas('${canvas.id}')">🗑️ Clear</button>
+                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="setCanvasWidth('${canvas.id}', 2)">Fino</button>
+                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="setCanvasWidth('${canvas.id}', 6)">Grueso</button>
+                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="clearCanvas('${canvas.id}')">🗑️</button>
                 <button class="btn" style="padding:2px 6px; font-size:0.7rem; margin-left:auto;" onclick="captureExerciseCard(this, 'copy')">${t('copySnapshot')}</button>
                 <button class="btn" style="padding:2px 6px; font-size:0.7rem;" onclick="captureExerciseCard(this, 'download')">${t('downloadSnapshot')}</button>
             `;
 
+            canvas._strokes = strokes;
+            canvas._redraw = redraw;
+            canvas._currentTool = currentTool;
             canvas._drawColor = currentColor;
             canvas._drawWidth = currentWidth;
 
@@ -1003,28 +1057,131 @@
                 };
             }
 
+            function distanceToSegment(p, a, b) {
+                const l2 = (b.x - a.x)**2 + (b.y - a.y)**2;
+                if (l2 === 0) return Math.hypot(p.x - a.x, p.y - a.y);
+                let t = ((p.x - a.x) * (b.x - a.x) + (p.y - a.y) * (b.y - a.y)) / l2;
+                t = Math.max(0, Math.min(1, t));
+                return Math.hypot(p.x - (a.x + t * (b.x - a.x)), p.y - (a.y + t * (b.y - a.y)));
+            }
+
+            function hitTestStroke(pos, s) {
+                const tolerance = Math.max(s.width, 10);
+                if (s.type === 'pen') {
+                    for (let i = 0; i < s.points.length - 1; i++) {
+                        if (distanceToSegment(pos, s.points[i], s.points[i+1]) < tolerance) return true;
+                    }
+                } else if (s.type === 'line') {
+                    if (distanceToSegment(pos, {x: s.x1, y: s.y1}, {x: s.x2, y: s.y2}) < tolerance) return true;
+                } else if (s.type === 'rect') {
+                    const p1 = {x: s.x, y: s.y}, p2 = {x: s.x + s.w, y: s.y};
+                    const p3 = {x: s.x + s.w, y: s.y + s.h}, p4 = {x: s.x, y: s.y + s.h};
+                    if (distanceToSegment(pos, p1, p2) < tolerance ||
+                        distanceToSegment(pos, p2, p3) < tolerance ||
+                        distanceToSegment(pos, p3, p4) < tolerance ||
+                        distanceToSegment(pos, p4, p1) < tolerance) return true;
+                }
+                return false;
+            }
+
             canvas.addEventListener('pointerdown', (e) => {
                 isDrawing = true;
                 const pos = getPos(e);
-                lastX = pos.x;
-                lastY = pos.y;
+                startX = pos.x;
+                startY = pos.y;
+
+                if (canvas._currentTool === 'pen') {
+                    strokes.push({
+                        type: 'pen',
+                        color: canvas._drawColor,
+                        width: canvas._drawWidth,
+                        points: [pos]
+                    });
+                } else if (canvas._currentTool === 'eraser') {
+                    strokes = strokes.filter(s => !hitTestStroke(pos, s));
+                    canvas._strokes = strokes;
+                    redraw();
+                }
             });
 
             canvas.addEventListener('pointermove', (e) => {
                 if (!isDrawing) return;
                 const pos = getPos(e);
-                ctx.beginPath();
-                ctx.moveTo(lastX, lastY);
-                ctx.lineTo(pos.x, pos.y);
-                ctx.strokeStyle = canvas._drawColor;
-                ctx.lineWidth = canvas._drawWidth;
-                ctx.lineCap = 'round';
-                ctx.stroke();
-                lastX = pos.x;
-                lastY = pos.y;
+
+                if (canvas._currentTool === 'pen') {
+                    const currentStroke = strokes[strokes.length - 1];
+                    if (currentStroke) {
+                        currentStroke.points.push(pos);
+                        redraw();
+                    }
+                } else if (canvas._currentTool === 'line') {
+                    redraw();
+                    ctx.save();
+                    ctx.strokeStyle = canvas._drawColor;
+                    ctx.lineWidth = canvas._drawWidth;
+                    ctx.lineCap = 'round';
+                    ctx.beginPath();
+                    ctx.moveTo(startX, startY);
+                    ctx.lineTo(pos.x, pos.y);
+                    ctx.stroke();
+                    ctx.restore();
+                } else if (canvas._currentTool === 'rect') {
+                    redraw();
+                    ctx.save();
+                    ctx.strokeStyle = canvas._drawColor;
+                    ctx.lineWidth = canvas._drawWidth;
+                    ctx.strokeRect(startX, startY, pos.x - startX, pos.y - startY);
+                    ctx.restore();
+                } else if (canvas._currentTool === 'eraser') {
+                    strokes = strokes.filter(s => !hitTestStroke(pos, s));
+                    canvas._strokes = strokes;
+                    redraw();
+                }
             });
 
-            window.addEventListener('pointerup', () => { isDrawing = false; });
+            window.addEventListener('pointerup', (e) => {
+                if (!isDrawing) return;
+                isDrawing = false;
+                const pos = getPos(e);
+
+                if (canvas._currentTool === 'line') {
+                    strokes.push({
+                        type: 'line',
+                        color: canvas._drawColor,
+                        width: canvas._drawWidth,
+                        x1: startX,
+                        y1: startY,
+                        x2: pos.x,
+                        y2: pos.y
+                    });
+                    redraw();
+                } else if (canvas._currentTool === 'rect') {
+                    strokes.push({
+                        type: 'rect',
+                        color: canvas._drawColor,
+                        width: canvas._drawWidth,
+                        x: startX,
+                        y: startY,
+                        w: pos.x - startX,
+                        h: pos.y - startY
+                    });
+                    redraw();
+                }
+            });
+        }
+
+        window.setCanvasTool = function(canvasId, tool) {
+            const canvas = document.getElementById(canvasId);
+            if(canvas) {
+                canvas._currentTool = tool;
+                ['pen', 'line', 'rect', 'eraser'].forEach(tName => {
+                    const btn = document.getElementById(`${canvasId}-btn-${tName}`);
+                    if(btn) {
+                        if(tName === tool) btn.classList.add('active-tool');
+                        else btn.classList.remove('active-tool');
+                    }
+                });
+            }
         }
 
         window.setCanvasColor = function(canvasId, color) {
@@ -1040,17 +1197,15 @@
         window.clearCanvas = function(canvasId) {
             const canvas = document.getElementById(canvasId);
             if(canvas) {
-                const ctx = canvas.getContext('2d');
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                canvas._strokes = [];
+                if(canvas._redraw) canvas._redraw();
             }
         }
 
-        // Robust capture using html2canvas
         async function captureExerciseCard(btn, actionType) {
             const card = btn.closest('.exercise-card');
             
             try {
-                // Hide action buttons during capture
                 const buttons = card.querySelectorAll('button');
                 buttons.forEach(b => b.style.display = 'none');
                 
@@ -1060,7 +1215,6 @@
                     backgroundColor: null
                 });
                 
-                // Restore buttons
                 buttons.forEach(b => b.style.display = '');
 
                 canvas.toBlob(async (pngBlob) => {
@@ -1096,17 +1250,20 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
 
+        function fmt(n) {
+            return n.toLocaleString('en-US').replace(/,/g, ' ');
+        }
+
         function generateTopicQuestion(topicIndex) {
             if (topicIndex === 0) {
-                // Topic 1: Multiplication Tables
                 const models = [
                     () => {
                         const w = getRandomInt(4, 9), p = getRandomInt(5000, 9000);
                         return {
                             topic: currentLang === 'es' ? 'Tablas de Multiplicar (Finanzas)' : 'Multiplication Tables (Finance)',
                             text: currentLang === 'es' ?
-                                `Ahorras <strong>$${p.toLocaleString()} pesos</strong> cada semana durante <strong>${w} semanas</strong> para comprar una bicicleta. ¿Cuánto dinero habrás ahorrado en total?` :
-                                `You save <strong>$${p.toLocaleString()} pesos</strong> each week for <strong>${w} weeks</strong> to buy a bicycle. How much money will you have saved in total?`,
+                                `Ahorras <strong>$${fmt(p)} pesos</strong> cada semana durante <strong>${w} semanas</strong> para comprar una bicicleta. ¿Cuánto dinero habrás ahorrado en total?` :
+                                `You save <strong>$${fmt(p)} pesos</strong> each week for <strong>${w} weeks</strong> to buy a bicycle. How much money will you have saved in total?`,
                             answer: w * p
                         };
                     },
@@ -1125,8 +1282,8 @@
                         return {
                             topic: currentLang === 'es' ? 'Tablas de Multiplicar (Entradas)' : 'Multiplication Tables (Tickets)',
                             text: currentLang === 'es' ?
-                                `Compras <strong>${b} entradas</strong> para el cine y cada entrada cuesta <strong>$${cost.toLocaleString()} pesos</strong>. ¿Cuánto pagas en total?` :
-                                `You buy <strong>${b} tickets</strong> for the cinema, and each ticket costs <strong>$${cost.toLocaleString()} pesos</strong>. What is your total payment?`,
+                                `Compras <strong>${b} entradas</strong> para el cine y cada entrada cuesta <strong>$${fmt(cost)} pesos</strong>. ¿Cuánto pagas en total?` :
+                                `You buy <strong>${b} tickets</strong> for the cinema, and each ticket costs <strong>$${fmt(cost)} pesos</strong>. What is your total payment?`,
                             answer: b * cost
                         };
                     },
@@ -1143,15 +1300,14 @@
                 ];
                 return models[getRandomInt(0, models.length - 1)]();
             } else if (topicIndex === 1) {
-                // Topic 2: Zeros in Minuend
                 const models = [
                     () => {
                         const sub = getRandomInt(250, 750);
                         return {
                             topic: currentLang === 'es' ? 'Resta con Ceros (Compras)' : 'Zeros in Minuend (Shopping)',
                             text: currentLang === 'es' ?
-                                `Vas a una tienda ecológica con <strong>$1,000 pesos</strong> y compras semillas por valor de <strong>$${sub} pesos</strong>. ¿Cuánto te dan de cambio?` :
-                                `You go to an eco-shop with <strong>$1,000 pesos</strong> and buy seeds for <strong>$${sub} pesos</strong>. What is your change?`,
+                                `Vas a una tienda ecológica con <strong>$1 000 pesos</strong> y compras semillas por valor de <strong>$${fmt(sub)} pesos</strong>. ¿Cuánto te dan de cambio?` :
+                                `You go to an eco-shop with <strong>$1 000 pesos</strong> and buy seeds for <strong>$${fmt(sub)} pesos</strong>. What is your change?`,
                             answer: 1000 - sub
                         };
                     },
@@ -1160,8 +1316,8 @@
                         return {
                             topic: currentLang === 'es' ? 'Resta con Ceros (Ahorros)' : 'Zeros in Minuend (Savings)',
                             text: currentLang === 'es' ?
-                                `Tienes una meta de ahorro de <strong>$5,000 pesos</strong>. Si ya has gastado <strong>$${sub} pesos</strong> en materiales, ¿cuánto saldo te queda en tu alcancía?` :
-                                `You have a savings goal of <strong>$5,000 pesos</strong>. If you have spent <strong>$${sub} pesos</strong> on supplies, how much balance remains in your bank?`,
+                                `Tienes una meta de ahorro de <strong>$5 000 pesos</strong>. Si ya has gastado <strong>$${fmt(sub)} pesos</strong> en materiales, ¿cuánto saldo te queda en tu alcancía?` :
+                                `You have a savings goal of <strong>$5 000 pesos</strong>. If you have spent <strong>$${fmt(sub)} pesos</strong> on supplies, how much balance remains in your bank?`,
                             answer: 5000 - sub
                         };
                     },
@@ -1170,8 +1326,8 @@
                         return {
                             topic: currentLang === 'es' ? 'Resta con Ceros (Medición)' : 'Zeros in Minuend (Measurement)',
                             text: currentLang === 'es' ?
-                                `Una pista de atletismo mide <strong>1,000 metros</strong> en total. Si un corredor ya recorrió <strong>${sub} metros</strong>, ¿cuántos metros le faltan para la meta?` :
-                                `A running track is <strong>1,000 meters</strong> long. If a runner has completed <strong>${sub} meters</strong>, how many meters are left to reach the finish line?`,
+                                `Una pista de atletismo mide <strong>1 000 metros</strong> en total. Si un corredor ya recorrió <strong>${fmt(sub)} metros</strong>, ¿cuántos metros le faltan para la meta?` :
+                                `A running track is <strong>1 000 meters</strong> long. If a runner has completed <strong>${fmt(sub)} meters</strong>, how many meters are left to reach the finish line?`,
                             answer: 1000 - sub
                         };
                     },
@@ -1180,15 +1336,14 @@
                         return {
                             topic: currentLang === 'es' ? 'Resta con Ceros (Biblioteca)' : 'Zeros in Minuend (Library)',
                             text: currentLang === 'es' ?
-                                `Una biblioteca municipal tiene <strong>5,000 libros</strong> registrados. Si prestan <strong>${sub} libros</strong> para las vacaciones, ¿cuántos libros quedan en la sede?` :
-                                `A municipal library has <strong>5,000 registered books</strong>. If they lend out <strong>${sub} books</strong> for holidays, how many books remain at the library?`,
+                                `Una biblioteca municipal tiene <strong>5 000 libros</strong> registrados. Si prestan <strong>${fmt(sub)} libros</strong> para las vacaciones, ¿cuántos libros quedan en la sede?` :
+                                `A municipal library has <strong>5 000 registered books</strong>. If they lend out <strong>${fmt(sub)} books</strong> for holidays, how many books remain at the library?`,
                             answer: 5000 - sub
                         };
                     }
                 ];
                 return models[getRandomInt(0, models.length - 1)]();
             } else if (topicIndex === 2) {
-                // Topic 3: Fractions & Pictograms
                 const models = [
                     () => {
                         const den = 8, num = getRandomInt(3, 7);
@@ -1233,7 +1388,6 @@
                 ];
                 return models[getRandomInt(0, models.length - 1)]();
             } else if (topicIndex === 3) {
-                // Topic 4: Multiplication Properties
                 const models = [
                     () => {
                         const n = getRandomInt(15, 85);
@@ -1268,7 +1422,6 @@
                 ];
                 return models[getRandomInt(0, models.length - 1)]();
             } else if (topicIndex === 4) {
-                // Topic 5: Order of Operations
                 const models = [
                     () => {
                         const base = getRandomInt(10, 25), m = getRandomInt(2, 5), sub = getRandomInt(1, 4);
@@ -1306,7 +1459,6 @@
                 ];
                 return models[getRandomInt(0, models.length - 1)]();
             } else if (topicIndex === 5) {
-                // Topic 6: Financial Literacy & Word Problems
                 const models = [
                     () => {
                         const weekly = getRandomInt(2, 5) * 1000, weeks = getRandomInt(4, 8), expense = getRandomInt(5, 12) * 1000;
@@ -1314,8 +1466,8 @@
                         return {
                             topic: currentLang === 'es' ? 'Educación Financiera (Ahorro)' : 'Financial Literacy (Savings)',
                             text: currentLang === 'es' ?
-                                `Ahorras <strong>$${weekly.toLocaleString()} pesos</strong> semanales durante <strong>${weeks} semanas</strong>. Si gastas <strong>$${expense.toLocaleString()} pesos</strong> en un libro, ¿cuánto dinero te queda?` :
-                                `You save <strong>$${weekly.toLocaleString()} pesos</strong> weekly for <strong>${weeks} weeks</strong>. If you spend <strong>$${expense.toLocaleString()} pesos</strong> on a book, how much money do you have left?`,
+                                `Ahorras <strong>$${fmt(weekly)} pesos</strong> semanales durante <strong>${weeks} semanas</strong>. Si gastas <strong>$${fmt(expense)} pesos</strong> en un libro, ¿cuánto dinero te queda?` :
+                                `You save <strong>$${fmt(weekly)} pesos</strong> weekly for <strong>${weeks} weeks</strong>. If you spend <strong>$${fmt(expense)} pesos</strong> on a book, how much money do you have left?`,
                             answer: ans
                         };
                     },
@@ -1325,8 +1477,8 @@
                         return {
                             topic: currentLang === 'es' ? 'Educación Financiera (Merienda)' : 'Financial Literacy (Snacks)',
                             text: currentLang === 'es' ?
-                                `Compras <strong>${juiceN} jugos</strong> a $${juiceP.toLocaleString()} cada uno y <strong>${cookieN} galletas</strong> a $${cookieP.toLocaleString()} cada una. Pagas con un billete de <strong>$${paid.toLocaleString()} pesos</strong>. ¿Cuál es tu cambio?` :
-                                `You buy <strong>${juiceN} juices</strong> at $${juiceP.toLocaleString()} each and <strong>${cookieN} cookies</strong> at $${cookieP.toLocaleString()} each. You pay with a <strong>$${paid.toLocaleString()} peso</strong> bill. What is your change?`,
+                                `Compras <strong>${juiceN} jugos</strong> a $${fmt(juiceP)} cada uno y <strong>${cookieN} galletas</strong> a $${fmt(cookieP)} cada una. Pagas con un billete de <strong>$${fmt(paid)} pesos</strong>. ¿Cuál es tu cambio?` :
+                                `You buy <strong>${juiceN} juices</strong> at $${fmt(juiceP)} each and <strong>${cookieN} cookies</strong> at $${fmt(cookieP)} each. You pay with a <strong>$${fmt(paid)} peso</strong> bill. What is your change?`,
                             answer: ans
                         };
                     },
@@ -1336,15 +1488,14 @@
                         return {
                             topic: currentLang === 'es' ? 'Educación Financiera (Mesada)' : 'Financial Literacy (Allowance)',
                             text: currentLang === 'es' ?
-                                `Recibes <strong>$${daily.toLocaleString()} pesos</strong> diarios de mesada durante <strong>${days} días</strong>. Compras un juego por <strong>$${toy.toLocaleString()} pesos</strong>. ¿Cuánto te sobra?` :
-                                `You receive <strong>$${daily.toLocaleString()} pesos</strong> daily allowance for <strong>${days} days</strong>. You buy a toy for <strong>$${toy.toLocaleString()} pesos</strong>. How much is left?`,
+                                `Recibes <strong>$${fmt(daily)} pesos</strong> diarios de mesada durante <strong>${days} días</strong>. Compras un juego por <strong>$${fmt(toy)} pesos</strong>. ¿Cuánto te sobra?` :
+                                `You receive <strong>$${fmt(daily)} pesos</strong> daily allowance for <strong>${days} days</strong>. You buy a toy for <strong>$${fmt(toy)} pesos</strong>. How much is left?`,
                             answer: ans
                         };
                     }
                 ];
                 return models[getRandomInt(0, models.length - 1)]();
             } else {
-                // Topic 7: Abbreviated Multiplication
                 const models = [
                     () => {
                         const n = getRandomInt(15, 95);
@@ -1385,12 +1536,10 @@
             const container = document.getElementById('quiz-questions-container');
             const questions = [];
             
-            // Generate one question for each of the 7 topics to ensure full coverage
             for(let i = 0; i < 7; i++) {
                 questions.push(generateTopicQuestion(i));
             }
             
-            // Shuffle questions ("revueltas")
             const finalQuestions = questions.sort(() => Math.random() - 0.5);
 
             container.innerHTML = finalQuestions.map((q, idx) => {
