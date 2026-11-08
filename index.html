@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathAdventure 3° - Exam Prep & Lab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #06b6d4;
+            --border-color: #cbd5e1;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            --radius: 12px;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-main: #0f172a;
+                --bg-card: #1e293b;
+                --text-color: #f1f5f9;
+                --text-muted: #94a3b8;
+                --primary: #6366f1;
+                --primary-hover: #4f46e5;
+                --accent: #22d3ee;
+                --border-color: #334155;
+                --success: #059669;
+                --error: #dc2626;
+                --warning: #d97706;
+                --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+            }
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #0f172a;
+            --bg-card: #1e293b;
+            --text-color: #f1f5f9;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --accent: #22d3ee;
+            --border-color: #334155;
+            --success: #059669;
+            --error: #dc2626;
+            --warning: #d97706;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.4);
+        }
+
+        [data-theme="light"] {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --text-color: #1e293b;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --accent: #06b6d4;
+            --border-color: #cbd5e1;
+            --success: #10b981;
+            --error: #ef4444;
+            --warning: #f59e0b;
+            --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background-color: var(--bg-card);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        button, .btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        button:hover, .btn:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
+        }
+
+        nav.nav-tabs {
+            background-color: var(--bg-card);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+            overflow-x: auto;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            cursor: pointer;
+            white-space: nowrap;
+            box-shadow: none;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        main {
+            flex: 1;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .view-section {
+            display: none;
+        }
+
+        .view-section.active {
+            display: block;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* Theory view */
+        .topic-card {
+            cursor: pointer;
+            border-left: 5px solid var(--primary);
+        }
+
+        .topic-card h3 {
+            color: var(--primary);
+        }
+
+        .example-box {
+            background-color: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .property-list {
+            margin: 0.75rem 0 1rem 1.25rem;
+            list-style-type: disc;
+        }
+
+        .property-list li {
+            margin-bottom: 0.4rem;
+            line-height: 1.5;
+        }
+
+        /* Interactive Lab */
+        .lab-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media(max-width: 768px) {
+            .lab-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .svg-canvas-wrapper {
+            background: var(--bg-card);
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius);
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+        }
+
+        .controls-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        input[type="range"], input[type="number"], input[type="text"], select {
+            padding: 0.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        /* Quiz & Exercises with Canvas */
+        .exercise-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .exercise-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .badge {
+            background-color: var(--accent);
+            color: #0f172a;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .drawing-pad-container {
+            margin: 1rem 0;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .drawing-toolbar {
+            background: var(--bg-main);
+            padding: 0.5rem;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            flex-wrap: wrap;
+        }
+
+        .color-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid white;
+            cursor: pointer;
+            box-shadow: 0 0 2px rgba(0,0,0,0.5);
+        }
+
+        canvas.sketch-pad {
+            width: 100%;
+            height: 160px;
+            touch-action: none;
+            cursor: crosshair;
+            display: block;
+        }
+
+        .answer-row {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .feedback {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            display: none;
+        }
+
+        .feedback.correct {
+            background-color: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+            display: block;
+        }
+
+        .feedback.incorrect {
+            background-color: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+            border: 1px solid var(--error);
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <span>🚀</span> <span id="header-title">MathAdventure 3°</span>
+        </div>
+        <div class="controls">
+            <button class="btn-secondary" id="lang-toggle-btn" title="Toggle Language">🌐 <span id="lang-label">ES</span></button>
+            <button class="btn-secondary" id="theme-toggle-btn" title="Toggle Theme">🌓</button>
+        </div>
+    </header>
+
+    <nav class="nav-tabs">
+        <button class="tab-btn active" data-target="view-home" id="nav-home">🏠 Home</button>
+        <button class="tab-btn" data-target="view-theory" id="nav-theory">📚 Theory & Examples</button>
+        <button class="tab-btn" data-target="view-lab" id="nav-lab">🧪 SVG Lab</button>
+        <button class="tab-btn" data-target="view-quiz" id="nav-quiz">📝 Exam Practice</button>
+    </nav>
+
+    <main>
+        <!-- HOME VIEW -->
+        <section id="view-home" class="view-section active">
+            <div class="card" style="text-align: center; padding: 3rem 1.5rem;">
+                <h1 id="home-welcome">Welcome to MathAdventure 3rd Grade! 🌟</h1>
+                <p id="home-subtitle" style="max-width: 700px; margin: 0 auto 2rem auto; color: var(--text-muted);">
+                    Get ready to conquer your 3rd-grade math exam (ages 8-9) with interactive labs, engaging theory featuring financial literacy, spatial reasoning, and data analysis!
+                </p>
+                <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                    <button class="btn" onclick="switchTab('view-theory')"><span id="btn-start-theory">Start Learning Theory</span> ➔</button>
+                    <button class="btn" style="background-color: var(--accent); color: #0f172a;" onclick="switchTab('view-quiz')"><span id="btn-start-quiz">Take Exam Quiz</span> 📝</button>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3 id="feat-1-title">🎯 What You Will Master</h3>
+                    <p id="feat-1-desc">Multiplication tables, regrouping zeros in subtraction, fractions, pictograms, multiplication properties, order of operations, and smart financial & spatial problem solving for 3rd grade!</p>
+                </div>
+                <div class="card">
+                    <h3 id="feat-2-title">🎨 Interactive Tools & Canvas</h3>
+                    <p id="feat-2-desc">Every problem features a precise drawing canvas, dynamic random value generators with diverse problem models, and snapshot capture tools with clipboard copy and file download options!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- THEORY VIEW -->
+        <section id="view-theory" class="view-section">
+            <h2 id="theory-heading">📖 Complete 3rd Grade Math Guide (Ages 8-9)</h2>
+            <p id="theory-subheading" style="color: var(--text-muted);">Click on any topic to explore definitions, key info, and real-world application examples!</p>
+            
+            <div id="theory-container">
+                <!-- Populated dynamically via JS -->
+            </div>
+        </section>
+
+        <!-- LAB VIEW -->
+        <section id="view-lab" class="view-section">
+            <h2 id="lab-heading">🧪 Interactive Math Lab (SVG & Visualizer)</h2>
+            <p id="lab-subheading" style="color: var(--text-muted);">Experiment with fractions, spatial multiplication arrays, and order of operations visually!</p>
+            
+            <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+                <button class="btn tab-sub-btn active" onclick="switchLabTab('fractions')"><span id="lab-tab-1">Fractions & Pictograms</span></button>
+                <button class="btn btn-secondary tab-sub-btn" onclick="switchLabTab('properties')"><span id="lab-tab-2">Multiplication Arrays</span></button>
+                <button class="btn btn-secondary tab-sub-btn" onclick="switchLabTab('operations')"><span id="lab-tab-3">Order of Operations</span></button>
+            </div>
+
+            <!-- Lab Sub 1: Fractions & Pictograms -->
+            <div id="lab-fractions" class="lab-sub-view card">
+                <div class="lab-container">
+                    <div class="svg-canvas-wrapper" id="fraction-svg-box">
+                        <!-- SVG injected here -->
+                    </div>
+                    <div class="controls-panel">
+                        <h3 id="lab-frac-title">Fraction & Pictogram Visualizer</h3>
+                        <p id="lab-frac-desc" style="font-size: 0.9rem; color: var(--text-muted);">Adjust numerator and denominator to see how parts make a whole!</p>
+                        <div class="control-group">
+                            <label id="label-num">Numerator (Parts shaded): <span id="val-num">3</span></label>
+                            <input type="range" id="input-num" min="1" max="8" value="3" oninput="updateLabFractions()">
+                        </div>
+                        <div class="control-group">
+                            <label id="label-den">Denominator (Total parts): <span id="val-den">4</span></label>
+                            <input type="range" id="input-den" min="2" max="8" value="4" oninput="updateLabFractions()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lab Sub 2: Multiplication Arrays & Properties -->
+            <div id="lab-properties" class="lab-sub-view card" style="display: none;">
+                <div class="lab-container">
+                    <div class="svg-canvas-wrapper" id="array-svg-box">
+                        <!-- SVG array injected here -->
+                    </div>
+                    <div class="controls-panel">
+                        <h3 id="lab-prop-title">Multiplication Arrays (Commutative Property)</h3>
+                        <p id="lab-prop-desc" style="font-size: 0.9rem; color: var(--text-muted);">See how rows × columns gives the exact same total items!</p>
+                        <div class="control-group">
+                            <label id="label-rows">Rows (a): <span id="val-rows">3</span></label>
+                            <input type="range" id="input-rows" min="1" max="6" value="3" oninput="updateLabArray()">
+                        </div>
+                        <div class="control-group">
+                            <label id="label-cols">Columns (b): <span id="val-cols">4</span></label>
+                            <input type="range" id="input-cols" min="1" max="6" value="4" oninput="updateLabArray()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lab Sub 3: Order of Operations -->
+            <div id="lab-operations" class="lab-sub-view card" style="display: none;">
+                <div class="lab-container">
+                    <div class="svg-canvas-wrapper" id="ops-svg-box" style="align-items: flex-start; padding: 1.5rem;">
+                        <!-- Steps visualized -->
+                    </div>
+                    <div class="controls-panel">
+                        <h3 id="lab-ops-title">Order of Operations Solver</h3>
+                        <p id="lab-ops-desc" style="font-size: 0.9rem; color: var(--text-muted);">Evaluate: 15 + 3 × (8 - 4) step by step.</p>
+                        <button class="btn" onclick="nextOpsStep()"><span id="btn-next-step">Next Step ➡️</span></button>
+                        <button class="btn btn-secondary" onclick="resetOpsStep()"><span id="btn-reset-step">Reset</span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUIZ VIEW -->
+        <section id="view-quiz" class="view-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 id="quiz-heading">📝 Exam Practice Quiz</h2>
+                    <p id="quiz-subheading" style="color: var(--text-muted);">Mixed application problems focusing on financial literacy, spatial reasoning, and data analysis for 3rd grade.</p>
+                </div>
+                <div>
+                    <button class="btn" onclick="initQuiz()"><span id="btn-new-quiz">🔄 Generate New Exam Set</span></button>
+                </div>
+            </div>
+
+            <div id="quiz-questions-container">
+                <!-- Populated dynamically -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p id="footer-text">MathAdventure 3° — Designed for Excellence in Primary Education (3rd Grade) 🌟</p>
+    </footer>
+
+    <script>
+        /* --- INTERNATIONALIZATION (EN / ES) --- */
+        const translations = {
+            en: {
+                headerTitle: "MathAdventure 3°",
+                navHome: "🏠 Home",
+                navTheory: "📚 Theory & Examples",
+                navLab: "🧪 SVG Lab",
+                navQuiz: "📝 Exam Practice",
+                homeWelcome: "Welcome to MathAdventure 3rd Grade! 🌟",
+                homeSubtitle: "Get ready to conquer your 3rd-grade math exam (ages 8-9) with interactive labs, engaging theory featuring financial literacy, spatial reasoning, and data analysis!",
+                btnStartTheory: "Start Learning Theory",
+                btnStartQuiz: "Take Exam Quiz",
+                feat1Title: "🎯 What You Will Master",
+                feat1Desc: "Multiplication tables, regrouping zeros in subtraction, fractions, pictograms, multiplication properties, order of operations, and smart financial & spatial problem solving for 3rd grade!",
+                feat2Title: "🎨 Interactive Tools & Canvas",
+                feat2Desc: "Every problem features a precise drawing canvas, dynamic random value generators with diverse problem models, and snapshot capture tools with clipboard copy and file download options!",
+                theoryHeading: "📖 Complete 3rd Grade Math Guide (Ages 8-9)",
+                theorySubheading: "Click on any topic to explore definitions, key info, and real-world application examples!",
+                labHeading: "🧪 Interactive Math Lab (SVG & Visualizer)",
+                labSubheading: "Experiment with fractions, spatial multiplication arrays, and order of operations visually!",
+                labTab1: "Fractions & Pictograms",
+                labTab2: "Multiplication Arrays",
+                labTab3: "Order of Operations",
+                labFracTitle: "Fraction & Pictogram Visualizer",
+                labFracDesc: "Adjust numerator and denominator to see how parts make a whole!",
+                labelNum: "Numerator (Parts shaded):",
+                labelDen: "Denominator (Total parts):",
+                labPropTitle: "Multiplication Arrays (Commutative Property)",
+                labPropDesc: "See how rows × columns gives the exact same total items!",
+                labelRows: "Rows (a):",
+                labelCols: "Columns (b):",
+                labOpsTitle: "Order of Operations Solver",
+                labOpsDesc: "Evaluate expressions step by step following parentheses and rules.",
+                btnNextStep: "Next Step ➡️",
+                btnResetStep: "Reset",
+                quizHeading: "📝 Exam Practice Quiz",
+                quizSubheading: "Mixed application problems focusing on financial literacy, spatial reasoning, and data analysis for 3rd grade.",
+                btnNewQuiz: "🔄 Generate New Exam Set",
+                footerText: "MathAdventure 3° — Designed for Excellence in Primary Education (3rd Grade) 🌟",
+                checkAnswer: "Check Answer",
+                newNumbers: "🔄 New Problem Models",
+                copySnapshot: "📋 Copy Snapshot",
+                downloadSnapshot: "💾 Download Image",
+                correctMsg: "🎉 Excellent! That is correct!",
+                incorrectMsg: "❌ Not quite right. Try sketching your steps on the canvas!",
+                topics: [
+                    {
+                        title: "1. Multiplication Tables in Real Contexts (Tablas de multiplicar)",
+                        def: "Multiplication is fast repeated addition! For 3rd grade, we use multiplication to calculate weekly savings budgets, rectangular garden areas, and ticket costs.",
+                        ex1Title: "Example 1: Weekly Savings Budget",
+                        ex1Text: "If you save $7,000 pesos every week for 8 weeks in your piggy bank, how much do you save in total? Calculation: 7,000 × 8 = 56,000 pesos.",
+                        ex2Title: "Example 2: Spatial Classroom Arrangement",
+                        ex2Text: "A robotics workshop has 6 rows of tables with 9 student kits on each row. Total student kits = 6 × 9 = 54 kits."
+                    },
+                    {
+                        title: "2. Addition & Subtraction with Zeros in the Minuend (Suma y resta con ceros)",
+                        def: "When subtracting from a number with zeros (like 1,000 or 5,000 pesos) when buying items or calculating change, you must regroup carefully across neighboring place values.",
+                        ex1Title: "Example 1: Shopping & Change",
+                        ex1Text: "You have a $1,000 peso bill and buy a notebook for $365 pesos. What is your change? 1,000 - 365 = 635 pesos.",
+                        ex2Title: "Example 2: Financial Savings Goal",
+                        ex2Text: "You aim to save $5,000 pesos for a science kit. You currently have $2,180 pesos. How much more do you need to save? 5,000 - 2,180 = 2,820 pesos."
+                    },
+                    {
+                        title: "3. Fractions, Pictograms & Data Analysis (Fracciones y pictogramas)",
+                        def: "Fractions represent parts of a whole (Numerator/Denominator). Pictograms use icons with a specific key value to analyze data collected by students.",
+                        ex1Title: "Example 1: Pizza Sharing & Fractions",
+                        ex1Text: "A homemade pizza is cut into 8 equal slices. You and your friends eat 5 slices during a study group. The fraction eaten is 5/8.",
+                        ex2Title: "Example 2: Pictogram Data Processing",
+                        ex2Text: "In a recycling pictogram, ♻️ represents 5 plastic bottles collected. If Friday shows 4 bottle icons (♻️♻️♻️♻️), the total bottles collected = 4 × 5 = 20 bottles."
+                    },
+                    {
+                        title: "4. Multiplication Properties (Propiedades de la multiplicación)",
+                        def: "Multiplication rules that streamline calculations. Each property is described below:<br>" +
+                             "<ul class='property-list'>" +
+                             "<li><b>Commutative property:</b> Changing the order of factors does not change the product ($a \times b = b \times a$).</li>" +
+                             "<li><b>Associative property:</b> Grouping factors differently does not change the product ($(a \times b) \times c = a \times (b \times c)$).</li>" +
+                             "<li><b>Modulative (Identity) property:</b> Multiplying any number by 1 gives the same number ($a \times 1 = a$).</li>" +
+                             "<li><b>Annulative property:</b> Multiplying any number by 0 results in zero ($a \times 0 = 0$).</li>" +
+                             "</ul>" +
+                             "Note: No distributive property here!",
+                        ex1Title: "Example 1: Commutative Property in Arrays",
+                        ex1Text: "Arranging 7 rows of 5 chairs gives the exact same total as 5 rows of 7 chairs (both equal 35 chairs). Order doesn't change the product!",
+                        ex2Title: "Example 2: Modulative & Annulative in Budgeting",
+                        ex2Text: "Buying 45 items priced at $1 peso each equals $45 pesos (Modulative). If you buy 45 items priced at $0 pesos during a giveaway, total cost is $0 (Annulative)."
+                    },
+                    {
+                        title: "5. Order of Operations (Jerarquía en las operaciones)",
+                        def: "When multiple operations appear together in financial or game scores, follow strict hierarchy: 1) Parentheses first, 2) Multiplication & Division, 3) Addition & Subtraction.",
+                        ex1Title: "Example 1: Parentheses First",
+                        ex1Text: "Calculate 10 + 2 × (6 - 4). Step 1: Parentheses (6 - 4) = 2. Step 2: Multiplication 2 × 2 = 4. Step 3: Addition 10 + 4 = 14.",
+                        ex2Title: "Example 2: Arcade Game Points",
+                        ex2Text: "Calculate 50 - (3 × 10 + 5). Parentheses inside: 30 + 5 = 35. Then 50 - 35 = 15 points."
+                    },
+                    {
+                        title: "6. Situations with 2+ Operations & Financial Literacy",
+                        def: "Real-life problems for 3rd grade combining earnings, savings, budgeting, and multiple operations.",
+                        ex1Title: "Example 1: Allowance & Bookstore Expense",
+                        ex1Text: "You earn $4,000 pesos allowance every day for 5 days. You spend $12,000 pesos on a graphic novel. How much do you have left? Total earned = 4,000 × 5 = 20,000. Remaining = 20,000 - 12,000 = 8,000 pesos.",
+                        ex2Title: "Example 2: Buying Snacks for Study Group",
+                        ex2Text: "You buy 3 juices at $2,500 each and 2 cookies at $1,500 each. You pay with a $20,000 bill. Total cost = (3 × 2,500) + (2 × 1,500) = 10,500. Change = 20,000 - 10,500 = 9,500 pesos."
+                    },
+                    {
+                        title: "7. Multiplication & Abbreviated Multiplication (Multiplicación abreviada)",
+                        def: "Multiplying by powers of 10 (10, 100) is super fast! Just append the exact number of zeros to the original number for quick estimation.",
+                        ex1Title: "Example 1: Multiplying by 100 for Bulk Supplies",
+                        ex1Text: "45 packs of notebooks with 100 sheets each = 45 × 100 = 4,500 total sheets (just add two zeros).",
+                        ex2Title: "Example 2: Multiplying by 10",
+                        ex2Text: "320 boxes with 10 crayons each = 320 × 10 = 3,200 crayons (add one zero)."
+                    }
+                ]
+            },
+            es: {
+                headerTitle: "MathAdventure 3°",
+                navHome: "🏠 Inicio",
+                navTheory: "📚 Teoría y Ejemplos",
+                navLab: "🧪 Laboratorio SVG",
+                navQuiz: "📝 Práctica de Examen",
+                homeWelcome: "¡Bienvenido a MathAdventure 3° Grado! 🌟",
+                homeSubtitle: "¡Prepárate para conquistar tu examen de tercer grado  con laboratorios interactivos, teoría con educación financiera, pensamiento espacial y análisis de datos!",
+                btnStartTheory: "Empezar a Estudiar Teoría",
+                btnStartQuiz: "Hacer Examen de Práctica",
+                feat1Title: "🎯 Lo que vas a dominar",
+                feat1Desc: "Tablas de multiplicar, restas con ceros en el minuendo, fracciones, pictogramas, propiedades, jerarquía y problemas de educación financiera y espacial para 3° grado.",
+                feat2Title: "🎨 Herramientas y Lienzo",
+                feat2Desc: "Cada problema incluye lienzo de dibujo preciso, modelos de problemas variados con valores aleatorios, y botones de captura con copiado al portapapeles y descarga de imagen.",
+                theoryHeading: "📖 Guía Completa de Matemáticas 3° ",
+                theorySubheading: "¡Haz clic en cualquier tema para ver definiciones, información clave y ejemplos de situaciones reales!",
+                labHeading: "🧪 Laboratorio Matemático Interactivo (SVG)",
+                labSubheading: "¡Experimenta con fracciones, matrices de multiplicación espacial y jerarquía de operaciones!",
+                labTab1: "Fracciones y Pictogramas",
+                labTab2: "Matrices de Multiplicación",
+                labTab3: "Jerarquía de Operaciones",
+                labFracTitle: "Visualizador de Fracciones y Pictogramas",
+                labFracDesc: "¡Ajusta el numerador y denominador para ver cómo las partes forman un todo!",
+                labelNum: "Numerador (Partes pintadas):",
+                labelDen: "Denominador (Partes totales):",
+                labPropTitle: "Matrices de Multiplicación (Propiedad Conmutativa)",
+                labPropDesc: "¡Mira cómo filas × columnas da exactamente la misma cantidad total!",
+                labelRows: "Filas (a):",
+                labelCols: "Columnas (b):",
+                labOpsTitle: "Resolutor de Jerarquía de Operaciones",
+                labOpsDesc: "Evalúa expresiones paso a paso siguiendo paréntesis y reglas de prioridad.",
+                btnNextStep: "Siguiente Paso ➡️",
+                btnResetStep: "Reiniciar",
+                quizHeading: "📝 Examen de Práctica",
+                quizSubheading: "Problemas de aplicación variados enfocados en educación financiera, pensamiento espacial y análisis de datos para tercer grado.",
+                btnNewQuiz: "🔄 Generar Nuevos Problemas",
+                footerText: "MathAdventure 3° — Diseñado para la Excelencia en Educación Primaria (3° Grado) 🌟",
+                checkAnswer: "Comprobar respuesta",
+                newNumbers: "🔄 Nuevos Modelos",
+                copySnapshot: "📋 Copiar Captura",
+                downloadSnapshot: "💾 Descargar Imagen",
+                correctMsg: "🎉 ¡Excelente! ¡Respuesta correcta!",
+                incorrectMsg: "❌ No es correcto. ¡Intenta hacer tus operaciones en el lienzo!",
+                topics: [
+                    {
+                        title: "1. Tablas de multiplicar en contextos reales",
+                        def: "¡La multiplicación es una suma abreviada! Para tercer grado, la usamos para calcular presupuestos de ahorro semanal, áreas de huertas rectangulares y costos de entradas.",
+                        ex1Title: "Ejemplo 1: Ahorro semanal y presupuesto",
+                        ex1Text: "Si ahorras $7,000 pesos cada semana durante 8 semanas en tu alcancía, ¿cuánto ahorras en total? Operación: 7,000 × 8 = 56,000 pesos.",
+                        ex2Title: "Ejemplo 2: Acomodo espacial en el aula",
+                        ex2Text: "Un taller de robótica tiene 6 filas de mesas con 9 kits de estudiantes en cada fila. Total de kits = 6 × 9 = 54 kits."
+                    },
+                    {
+                        title: "2. Suma y resta con ceros en el minuendo",
+                        def: "Cuando restas a un número lleno de ceros (como 1,000 o 5,000 pesos) al comprar o calcular devueltas, debes desagrupar con cuidado entre las posiciones vecinas.",
+                        ex1Title: "Ejemplo 1: Compras y devueltas",
+                        ex1Text: "Tienes un billete de $1,000 pesos y compras un cuaderno por $365 pesos. ¿Cuánto te dan de cambio? 1,000 - 365 = 635 pesos.",
+                        ex2Title: "Ejemplo 2: Meta de ahorro financiero",
+                        ex2Text: "Quieres comprar un kit de ciencia de $5,000 pesos. Ya tienes ahorrados $2,180 pesos. ¿Cuánto te falta por ahorrar? 5,000 - 2,180 = 2,820 pesos."
+                    },
+                    {
+                        title: "3. Fracciones, pictogramas y análisis de datos",
+                        def: "Las fracciones representan partes de un todo. Los pictogramas usan símbolos con una clave numérica para analizar datos recolectados por estudiantes.",
+                        ex1Title: "Ejemplo 1: Repartiendo pizza y fracciones",
+                        ex1Text: "Una pizza casera se divide en 8 porciones iguales. Tú y tus amigos se comen 5 porciones durante el grupo de estudio. La fracción consumida es 5/8.",
+                        ex2Title: "Ejemplo 2: Procesamiento de datos en pictograma",
+                        ex2Text: "En un pictograma de reciclaje, ♻️ vale 5 botellas plásticas. Si el viernes se muestran 4 iconos de botellas (♻️♻️♻️♻️), el total recolectado es 4 × 5 = 20 botellas."
+                    },
+                    {
+                        title: "4. Propiedades de la multiplicación",
+                        def: "Reglas clave de la multiplicación. Cada propiedad se presenta a continuación en su propio renglón:<br>" +
+                             "<ul class='property-list'>" +
+                             "<li><b>Propiedad Conmutativa:</b> El orden de los factores no altera el producto ($a \times b = b \times a$).</li>" +
+                             "<li><b>Propiedad Asociativa:</b> La forma de agrupar los factores no cambia el resultado final ($(a \times b) \times c = a \times (b \times c)$).</li>" +
+                             "<li><b>Propiedad Modulativa o Elemento Neutro:</b> Multiplicar cualquier número por 1 da como resultado el mismo número ($a \times 1 = a$).</li>" +
+                             "<li><b>Propiedad Anulativa:</b> Multiplicar cualquier número por 0 da siempre como resultado cero ($a \times 0 = 0$).</li>" +
+                             "</ul>" +
+                             "¡Sin propiedad distributiva!",
+                        ex1Title: "Ejemplo 1: Propiedad Conmutativa espacial",
+                        ex1Text: "Organizar 7 filas de 5 sillas da exactamente el mismo total que 5 filas de 7 sillas (ambas dan 35 sillas). ¡El orden no altera el producto!",
+                        ex2Title: "Ejemplo 2: Modulativa y Anulativa en compras",
+                        ex2Text: "Comprar 45 artículos a $1 peso cada uno da $45 pesos (Modulativa). Si compras 45 artículos a $0 pesos en una feria gratuita, el costo total es $0 (Anulativa)."
+                    },
+                    {
+                        title: "5. Jerarquía en las operaciones",
+                        def: "Cuando hay varias operaciones juntas en puntajes de juegos o compras, sigue el orden: 1) Paréntesis primero, 2) Multiplicación y división, 3) Suma y resta.",
+                        ex1Title: "Ejemplo 1: Paréntesis primero",
+                        ex1Text: "Calcula 10 + 2 × (6 - 4). Paso 1: Paréntesis (6 - 4) = 2. Paso 2: Multiplicación 2 × 2 = 4. Paso 3: Suma 10 + 4 = 14.",
+                        ex2Title: "Ejemplo 2: Puntuación de videojuego",
+                        ex2Text: "Calcula 50 - (3 × 10 + 5). Paréntesis interno: 30 + 5 = 35. Luego 50 - 35 = 15 puntos."
+                    },
+                    {
+                        title: "6. Situaciones con 2 o más operaciones (Educación financiera)",
+                        def: "Problemas de la vida real para tercer grado combinando ingresos, ahorros, presupuestos y múltiples operaciones aritméticas.",
+                        ex1Title: "Ejemplo 1: Mesada y gasto en librería",
+                        ex1Text: "Recibes $4,000 pesos de mesada diaria durante 5 días. Gastas $12,000 pesos en una novela gráfica. ¿Cuánto te queda? Total ganado = 4,000 × 5 = 20,000. Restante = 20,000 - 12,000 = 8,000 pesos.",
+                        ex2Title: "Ejemplo 2: Comprando merienda para el grupo",
+                        ex2Text: "Compras 3 jugos a $2,500 cada uno y 2 galletas a $1,500. Pagas con un billete de $20,000. Costo total = (3 × 2,500) + (2 × 1,500) = 10,500. Cambio = 20,000 - 10,500 = 9,500 pesos."
+                    },
+                    {
+                        title: "7. Multiplicación y multiplicación abreviada",
+                        def: "¡Multiplicar por potencias de 10 (10, 100) es rapidísimo! Solo agrega la cantidad exacta de ceros al número original.",
+                        ex1Title: "Ejemplo 1: Multiplicar por 100 para papelería",
+                        ex1Text: "45 paquetes de cuadernos con 100 hojas cada uno = 45 × 100 = 4,500 hojas en total (agregas dos ceros).",
+                        ex2Title: "Ejemplo 2: Multiplicar por 10",
+                        ex2Text: "320 cajas con 10 crayones cada una = 320 × 10 = 3,200 crayones (agregas un cero)."
+                    }
+                ]
+            }
+        };
+
+        let currentLang = localStorage.getItem('math_lang') || 'es';
+        let currentTheme = localStorage.getItem('math_theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+
+        document.documentElement.setAttribute('data-theme', currentTheme);
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        /* --- UI RENDER & UPDATES --- */
+        function updateUI() {
+            document.getElementById('header-title').textContent = t('headerTitle');
+            document.getElementById('lang-label').textContent = currentLang.toUpperCase();
+            document.getElementById('nav-home').textContent = t('navHome');
+            document.getElementById('nav-theory').textContent = t('navTheory');
+            document.getElementById('nav-lab').textContent = t('navLab');
+            document.getElementById('nav-quiz').textContent = t('navQuiz');
+
+            document.getElementById('home-welcome').textContent = t('homeWelcome');
+            document.getElementById('home-subtitle').textContent = t('homeSubtitle');
+            document.getElementById('btn-start-theory').textContent = t('btnStartTheory');
+            document.getElementById('btn-start-quiz').textContent = t('btnStartQuiz');
+            document.getElementById('feat-1-title').textContent = t('feat1Title');
+            document.getElementById('feat-1-desc').textContent = t('feat1Desc');
+            document.getElementById('feat-2-title').textContent = t('feat2Title');
+            document.getElementById('feat-2-desc').textContent = t('feat2Desc');
+
+            document.getElementById('theory-heading').textContent = t('theoryHeading');
+            document.getElementById('theory-subheading').textContent = t('theorySubheading');
+
+            document.getElementById('lab-heading').textContent = t('labHeading');
+            document.getElementById('lab-subheading').textContent = t('labSubheading');
+            document.getElementById('lab-tab-1').textContent = t('labTab1');
+            document.getElementById('lab-tab-2').textContent = t('labTab2');
+            document.getElementById('lab-tab-3').textContent = t('labTab3');
+            document.getElementById('lab-frac-title').textContent = t('labFracTitle');
+            document.getElementById('lab-frac-desc').textContent = t('labFracDesc');
+            document.getElementById('label-num').childNodes[0].nodeValue = t('labelNum') + " ";
+            document.getElementById('label-den').childNodes[0].nodeValue = t('labelDen') + " ";
+            document.getElementById('lab-prop-title').textContent = t('labPropTitle');
+            document.getElementById('lab-prop-desc').textContent = t('labPropDesc');
+            document.getElementById('label-rows').childNodes[0].nodeValue = t('labelRows') + " ";
+            document.getElementById('label-cols').childNodes[0].nodeValue = t('labelCols') + " ";
+            document.getElementById('lab-ops-title').textContent = t('labOpsTitle');
+            document.getElementById('lab-ops-desc').textContent = t('labOpsDesc');
+            document.getElementById('btn-next-step').textContent = t('btnNextStep');
+            document.getElementById('btn-reset-step').textContent = t('btnResetStep');
+
+            document.getElementById('quiz-heading').textContent = t('quizHeading');
+            document.getElementById('quiz-subheading').textContent = t('quizSubheading');
+            document.getElementById('btn-new-quiz').textContent = t('btnNewQuiz');
+            document.getElementById('footer-text').textContent = t('footerText');
+
+            renderTheoryCards();
+        }
+
+        function renderTheoryCards() {
+            const container = document.getElementById('theory-container');
+            const topics = translations[currentLang].topics;
+            container.innerHTML = topics.map((tp, idx) => `
+                <div class="card topic-card">
+                    <h3>${tp.title}</h3>
+                    <p>${tp.def}</p>
+                    <div class="example-box">
+                        <strong>${tp.ex1Title}</strong>
+                        <p style="margin-top: 5px; margin-bottom: 0;">${tp.ex1Text}</p>
+                    </div>
+                    <div class="example-box" style="border-left-color: var(--primary);">
+                        <strong>${tp.ex2Title}</strong>
+                        <p style="margin-top: 5px; margin-bottom: 0;">${tp.ex2Text}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* --- NAVIGATION TABS --- */
+        function switchTab(viewId) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById(viewId).classList.add('active');
+            const btnMap = { 'view-home': 'nav-home', 'view-theory': 'nav-theory', 'view-lab': 'nav-lab', 'view-quiz': 'nav-quiz' };
+            const activeBtn = document.getElementById(btnMap[viewId]);
+            if(activeBtn) activeBtn.classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchTab(btn.getAttribute('data-target'));
+            });
+        });
+
+        /* --- CONTROLS TOGGLES --- */
+        document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            localStorage.setItem('math_lang', currentLang);
+            updateUI();
+            updateLabFractions();
+            updateLabArray();
+            initQuiz();
+        });
+
+        document.getElementById('theme-toggle-btn').addEventListener('click', () => {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            localStorage.setItem('math_theme', currentTheme);
+            document.documentElement.setAttribute('data-theme', currentTheme);
+        });
+
+        /* --- INTERACTIVE LAB LOGIC --- */
+        function switchLabTab(sub) {
+            document.querySelectorAll('.lab-sub-view').forEach(el => el.style.display = 'none');
+            document.querySelectorAll('.tab-sub-btn').forEach(el => {
+                el.classList.add('btn-secondary');
+            });
+            event.currentTarget.classList.remove('btn-secondary');
+            document.getElementById('lab-' + sub).style.display = 'block';
+        }
+
+        // Lab 1: Fractions SVG
+        function updateLabFractions() {
+            const num = parseInt(document.getElementById('input-num').value);
+            const den = parseInt(document.getElementById('input-den').value);
+            document.getElementById('val-num').textContent = num;
+            document.getElementById('val-den').textContent = den;
+
+            const box = document.getElementById('fraction-svg-box');
+            let svgContent = `<svg viewBox="0 0 200 200" width="100%" height="100%" style="max-width: 220px;">`;
+            const cx = 100, cy = 100, r = 80;
+            
+            for(let i=0; i<den; i++) {
+                const startAngle = (i * 2 * Math.PI) / den - Math.PI/2;
+                const endAngle = ((i + 1) * 2 * Math.PI) / den - Math.PI/2;
+                const x1 = cx + r * Math.cos(startAngle);
+                const y1 = cy + r * Math.sin(startAngle);
+                const x2 = cx + r * Math.cos(endAngle);
+                const y2 = cy + r * Math.sin(endAngle);
+                const largeArc = (2 * Math.PI) / den > Math.PI ? 1 : 0;
+                const pathData = `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
+                const fillColor = i < num ? 'var(--primary)' : 'var(--bg-main)';
+                const strokeColor = 'var(--border-color)';
+                svgContent += `<path d="${pathData}" fill="${fillColor}" stroke="${strokeColor}" stroke-width="2"/>`;
+            }
+            svgContent += `</svg><p style="margin-top:10px; font-weight:700; font-size:1.2rem;">Fraction: ${num} / ${den}</p>`;
+            box.innerHTML = svgContent;
+        }
+
+        // Lab 2: Multiplication Array SVG
+        function updateLabArray() {
+            const rows = parseInt(document.getElementById('input-rows').value);
+            const cols = parseInt(document.getElementById('input-cols').value);
+            document.getElementById('val-rows').textContent = rows;
+            document.getElementById('val-cols').textContent = cols;
+
+            const box = document.getElementById('array-svg-box');
+            let svgContent = `<svg viewBox="0 0 240 200" width="100%" height="100%" style="max-width: 250px;">`;
+            
+            const cellW = 200 / Math.max(cols, 1);
+            const cellH = 160 / Math.max(rows, 1);
+
+            for(let r=0; r<rows; r++) {
+                for(let c=0; c<cols; c++) {
+                    svgContent += `<rect x="${20 + c * cellW + 4}" y="${20 + r * cellH + 4}" width="${cellW - 8}" height="${cellH - 8}" rx="6" fill="var(--accent)" />`;
+                }
+            }
+            svgContent += `</svg><p style="margin-top:10px; font-weight:700; font-size:1.2rem;">${rows} × ${cols} = ${rows * cols}</p>`;
+            box.innerHTML = svgContent;
+        }
+
+        // Lab 3: Order of Operations Steps
+        let opsStep = 0;
+        const opsStepsEN = [
+            "Expression: 15 + 3 × (8 - 4)<br>👉 Rule 1: Solve inside Parentheses (8 - 4) = 4.",
+            "Current: 15 + 3 × 4<br>👉 Rule 2: Perform Multiplication 3 × 4 = 12.",
+            "Current: 15 + 12<br>👉 Rule 3: Perform Addition 15 + 12 = 27. 🎉 Finished!"
+        ];
+        const opsStepsES = [
+            "Expresión: 15 + 3 × (8 - 4)<br>👉 Regla 1: Resolver dentro del paréntesis (8 - 4) = 4.",
+            "Actual: 15 + 3 × 4<br>👉 Regla 2: Realizar multiplicación 3 × 4 = 12.",
+            "Actual: 15 + 12<br>👉 Regla 3: Realizar suma 15 + 12 = 27. ¡Terminado! 🎉"
+        ];
+
+        function nextOpsStep() {
+            const steps = currentLang === 'es' ? opsStepsES : opsStepsEN;
+            if(opsStep < steps.length - 1) opsStep++;
+            renderOpsStep();
+        }
+
+        function resetOpsStep() {
+            opsStep = 0;
+            renderOpsStep();
+        }
+
+        function renderOpsStep() {
+            const steps = currentLang === 'es' ? opsStepsES : opsStepsEN;
+            const box = document.getElementById('ops-svg-box');
+            box.innerHTML = `<div style="font-size:1.1rem; line-height:1.8;">${steps[opsStep]}</div>`;
+        }
+
+        updateLabFractions();
+        updateLabArray();
+        renderOpsStep();
+
+
+        /* --- DRAWING CANVAS & SNAPSHOT LOGIC --- */
+        function initDrawingPad(canvas) {
+            const ctx = canvas.getContext('2d');
+            let isDrawing = false;
+            let lastX = 0;
+            let lastY = 0;
+            let currentColor = '#1e293b';
+            let currentWidth = 3;
+
+            const wrapper = canvas.parentElement;
+            const toolbar = wrapper.querySelector('.drawing-toolbar');
+            
+            toolbar.innerHTML = `
+                <span style="font-size:0.8rem; font-weight:600;">🖌️ Sketchpad:</span>
+                <div class="color-btn" style="background:#1e293b;" onclick="setCanvasColor('${canvas.id}', '#1e293b')"></div>
+                <div class="color-btn" style="background:#4f46e5;" onclick="setCanvasColor('${canvas.id}', '#4f46e5')"></div>
+                <div class="color-btn" style="background:#06b6d4;" onclick="setCanvasColor('${canvas.id}', '#06b6d4')"></div>
+                <div class="color-btn" style="background:#ef4444;" onclick="setCanvasColor('${canvas.id}', '#ef4444')"></div>
+                <div class="color-btn" style="background:#10b981;" onclick="setCanvasColor('${canvas.id}', '#10b981')"></div>
+                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="setCanvasWidth('${canvas.id}', 2)">Thin</button>
+                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="setCanvasWidth('${canvas.id}', 6)">Thick</button>
+                <button class="btn-secondary" style="padding:2px 6px; font-size:0.75rem;" onclick="clearCanvas('${canvas.id}')">🗑️ Clear</button>
+                <button class="btn" style="padding:2px 6px; font-size:0.7rem; margin-left:auto;" onclick="captureExerciseCard(this, 'copy')">${t('copySnapshot')}</button>
+                <button class="btn" style="padding:2px 6px; font-size:0.7rem;" onclick="captureExerciseCard(this, 'download')">${t('downloadSnapshot')}</button>
+            `;
+
+            canvas._drawColor = currentColor;
+            canvas._drawWidth = currentWidth;
+
+            function getPos(e) {
+                const rect = canvas.getBoundingClientRect();
+                const scaleX = canvas.width / rect.width;
+                const scaleY = canvas.height / rect.height;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                return {
+                    x: (clientX - rect.left) * scaleX,
+                    y: (clientY - rect.top) * scaleY
+                };
+            }
+
+            canvas.addEventListener('pointerdown', (e) => {
+                isDrawing = true;
+                const pos = getPos(e);
+                lastX = pos.x;
+                lastY = pos.y;
+            });
+
+            canvas.addEventListener('pointermove', (e) => {
+                if (!isDrawing) return;
+                const pos = getPos(e);
+                ctx.beginPath();
+                ctx.moveTo(lastX, lastY);
+                ctx.lineTo(pos.x, pos.y);
+                ctx.strokeStyle = canvas._drawColor;
+                ctx.lineWidth = canvas._drawWidth;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                lastX = pos.x;
+                lastY = pos.y;
+            });
+
+            window.addEventListener('pointerup', () => { isDrawing = false; });
+        }
+
+        window.setCanvasColor = function(canvasId, color) {
+            const canvas = document.getElementById(canvasId);
+            if(canvas) canvas._drawColor = color;
+        }
+
+        window.setCanvasWidth = function(canvasId, width) {
+            const canvas = document.getElementById(canvasId);
+            if(canvas) canvas._drawWidth = width;
+        }
+
+        window.clearCanvas = function(canvasId) {
+            const canvas = document.getElementById(canvasId);
+            if(canvas) {
+                const ctx = canvas.getContext('2d');
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        // Robust capture using html2canvas
+        async function captureExerciseCard(btn, actionType) {
+            const card = btn.closest('.exercise-card');
+            
+            try {
+                // Hide action buttons during capture
+                const buttons = card.querySelectorAll('button');
+                buttons.forEach(b => b.style.display = 'none');
+                
+                const canvas = await html2canvas(card, {
+                    scale: 2,
+                    useCORS: true,
+                    backgroundColor: null
+                });
+                
+                // Restore buttons
+                buttons.forEach(b => b.style.display = '');
+
+                canvas.toBlob(async (pngBlob) => {
+                    if (actionType === 'copy') {
+                        try {
+                            await navigator.clipboard.write([new ClipboardItem({ 'image/png': pngBlob })]);
+                            alert(currentLang === 'es' ? '¡Captura copiada al portapapeles con éxito! 📋✨' : 'Snapshot successfully copied to clipboard! 📋✨');
+                        } catch(e) {
+                            downloadBlob(pngBlob);
+                        }
+                    } else {
+                        downloadBlob(pngBlob);
+                    }
+                }, 'image/png');
+            } catch(err) {
+                const buttons = card.querySelectorAll('button');
+                buttons.forEach(b => b.style.display = '');
+                alert('Snapshot error: ' + err);
+            }
+        }
+
+        function downloadBlob(blob) {
+            const link = document.createElement('a');
+            link.download = 'math-exercise-capture.png';
+            link.href = URL.createObjectURL(blob);
+            link.click();
+            alert(currentLang === 'es' ? '¡Imagen descargada a tu equipo! 💾' : 'Image downloaded to your device! 💾');
+        }
+
+
+        /* --- MULTI-MODEL PROBLEM GENERATOR FOR 3RD GRADE --- */
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function generateTopicQuestion(topicIndex) {
+            if (topicIndex === 0) {
+                // Topic 1: Multiplication Tables
+                const models = [
+                    () => {
+                        const w = getRandomInt(4, 9), p = getRandomInt(5000, 9000);
+                        return {
+                            topic: currentLang === 'es' ? 'Tablas de Multiplicar (Finanzas)' : 'Multiplication Tables (Finance)',
+                            text: currentLang === 'es' ?
+                                `Ahorras <strong>$${p.toLocaleString()} pesos</strong> cada semana durante <strong>${w} semanas</strong> para comprar una bicicleta. ¿Cuánto dinero habrás ahorrado en total?` :
+                                `You save <strong>$${p.toLocaleString()} pesos</strong> each week for <strong>${w} weeks</strong> to buy a bicycle. How much money will you have saved in total?`,
+                            answer: w * p
+                        };
+                    },
+                    () => {
+                        const r = getRandomInt(5, 8), c = getRandomInt(6, 9);
+                        return {
+                            topic: currentLang === 'es' ? 'Tablas de Multiplicar (Espacial)' : 'Multiplication Tables (Spatial)',
+                            text: currentLang === 'es' ?
+                                `Un salón escolar tiene <strong>${r} filas de bancas</strong> y en cada fila hay <strong>${c} bancas</strong>. ¿Cuántas bancas hay en total en el salón?` :
+                                `A classroom has <strong>${r} rows of desks</strong> with <strong>${c} desks</strong> in each row. How many desks are there in total?`,
+                            answer: r * c
+                        };
+                    },
+                    () => {
+                        const b = getRandomInt(4, 8), cost = getRandomInt(2500, 4500);
+                        return {
+                            topic: currentLang === 'es' ? 'Tablas de Multiplicar (Entradas)' : 'Multiplication Tables (Tickets)',
+                            text: currentLang === 'es' ?
+                                `Compras <strong>${b} entradas</strong> para el cine y cada entrada cuesta <strong>$${cost.toLocaleString()} pesos</strong>. ¿Cuánto pagas en total?` :
+                                `You buy <strong>${b} tickets</strong> for the cinema, and each ticket costs <strong>$${cost.toLocaleString()} pesos</strong>. What is your total payment?`,
+                            answer: b * cost
+                        };
+                    },
+                    () => {
+                        const boxes = getRandomInt(6, 9), pens = getRandomInt(6, 8);
+                        return {
+                            topic: currentLang === 'es' ? 'Tablas de Multiplicar (Inventario)' : 'Multiplication Tables (Inventory)',
+                            text: currentLang === 'es' ?
+                                `Una papelería escolar tiene <strong>${boxes} cajas</strong> de marcadores, y cada caja contiene <strong>${pens} marcadores</strong>. ¿Cuántos marcadores hay en total?` :
+                                `A stationery store has <strong>${boxes} boxes</strong> of markers, and each box contains <strong>${pens} markers</strong>. How many markers are there in total?`,
+                            answer: boxes * pens
+                        };
+                    }
+                ];
+                return models[getRandomInt(0, models.length - 1)]();
+            } else if (topicIndex === 1) {
+                // Topic 2: Zeros in Minuend
+                const models = [
+                    () => {
+                        const sub = getRandomInt(250, 750);
+                        return {
+                            topic: currentLang === 'es' ? 'Resta con Ceros (Compras)' : 'Zeros in Minuend (Shopping)',
+                            text: currentLang === 'es' ?
+                                `Vas a una tienda ecológica con <strong>$1,000 pesos</strong> y compras semillas por valor de <strong>$${sub} pesos</strong>. ¿Cuánto te dan de cambio?` :
+                                `You go to an eco-shop with <strong>$1,000 pesos</strong> and buy seeds for <strong>$${sub} pesos</strong>. What is your change?`,
+                            answer: 1000 - sub
+                        };
+                    },
+                    () => {
+                        const sub = getRandomInt(1200, 3800);
+                        return {
+                            topic: currentLang === 'es' ? 'Resta con Ceros (Ahorros)' : 'Zeros in Minuend (Savings)',
+                            text: currentLang === 'es' ?
+                                `Tienes una meta de ahorro de <strong>$5,000 pesos</strong>. Si ya has gastado <strong>$${sub} pesos</strong> en materiales, ¿cuánto saldo te queda en tu alcancía?` :
+                                `You have a savings goal of <strong>$5,000 pesos</strong>. If you have spent <strong>$${sub} pesos</strong> on supplies, how much balance remains in your bank?`,
+                            answer: 5000 - sub
+                        };
+                    },
+                    () => {
+                        const sub = getRandomInt(310, 690);
+                        return {
+                            topic: currentLang === 'es' ? 'Resta con Ceros (Medición)' : 'Zeros in Minuend (Measurement)',
+                            text: currentLang === 'es' ?
+                                `Una pista de atletismo mide <strong>1,000 metros</strong> en total. Si un corredor ya recorrió <strong>${sub} metros</strong>, ¿cuántos metros le faltan para la meta?` :
+                                `A running track is <strong>1,000 meters</strong> long. If a runner has completed <strong>${sub} meters</strong>, how many meters are left to reach the finish line?`,
+                            answer: 1000 - sub
+                        };
+                    },
+                    () => {
+                        const sub = getRandomInt(1500, 3200);
+                        return {
+                            topic: currentLang === 'es' ? 'Resta con Ceros (Biblioteca)' : 'Zeros in Minuend (Library)',
+                            text: currentLang === 'es' ?
+                                `Una biblioteca municipal tiene <strong>5,000 libros</strong> registrados. Si prestan <strong>${sub} libros</strong> para las vacaciones, ¿cuántos libros quedan en la sede?` :
+                                `A municipal library has <strong>5,000 registered books</strong>. If they lend out <strong>${sub} books</strong> for holidays, how many books remain at the library?`,
+                            answer: 5000 - sub
+                        };
+                    }
+                ];
+                return models[getRandomInt(0, models.length - 1)]();
+            } else if (topicIndex === 2) {
+                // Topic 3: Fractions & Pictograms
+                const models = [
+                    () => {
+                        const den = 8, num = getRandomInt(3, 7);
+                        return {
+                            topic: currentLang === 'es' ? 'Fracciones (Reparto)' : 'Fractions (Sharing)',
+                            text: currentLang === 'es' ?
+                                `Una barra de chocolate se divide en <strong>${den} partes iguales</strong>. Si tú y tu familia se comen <strong>${num} partes</strong>, ¿cuántas partes quedan sin comer?` :
+                                `A chocolate bar is divided into <strong>${den} equal parts</strong>. If you and your family eat <strong>${num} parts</strong>, how many parts are left uneaten?`,
+                            answer: den - num
+                        };
+                    },
+                    () => {
+                        const val = 5, icons = getRandomInt(4, 9);
+                        return {
+                            topic: currentLang === 'es' ? 'Pictogramas (Datos)' : 'Pictograms (Data Analysis)',
+                            text: currentLang === 'es' ?
+                                `En un pictograma de reciclaje, cada icono ⭐ representa <strong>${val} kilogramos</strong> de papel recolectado. Si la gráfica muestra <strong>${icons} iconos ⭐</strong>, ¿cuántos kilogramos se recolectaron en total?` :
+                                `In a recycling pictogram, each ⭐ icon represents <strong>${val} kilograms</strong> of paper collected. If the chart shows <strong>${icons} ⭐ icons</strong>, how many total kilograms were collected?`,
+                            answer: icons * val
+                        };
+                    },
+                    () => {
+                        const den = 10, num = getRandomInt(2, 8);
+                        return {
+                            topic: currentLang === 'es' ? 'Fracciones (Medida)' : 'Fractions (Measurement)',
+                            text: currentLang === 'es' ?
+                                `Una cuerda mide <strong>${den} metros</strong> de longitud total. Si utilizas <strong>${num} metros</strong> para un experimento, ¿qué longitud de cuerda (en metros) sobra?` :
+                                `A rope measures <strong>${den} meters</strong> in total length. If you use <strong>${num} meters</strong> for an experiment, what length of rope (in meters) is left?`,
+                            answer: den - num
+                        };
+                    },
+                    () => {
+                        const val = 10, icons = getRandomInt(3, 8);
+                        return {
+                            topic: currentLang === 'es' ? 'Pictogramas (Estadística)' : 'Pictograms (Statistics)',
+                            text: currentLang === 'es' ?
+                                `En una encuesta escolar, cada pictograma 🐾 equivale a <strong>${val} estudiantes</strong>. Si la categoría muestra <strong>${icons} iconos 🐾</strong>, ¿cuántos estudiantes votaron en total?` :
+                                `In a school survey, each 🐾 pictogram equals <strong>${val} students</strong>. If the category shows <strong>${icons} 🐾 icons</strong>, how many students voted in total?`,
+                            answer: icons * val
+                        };
+                    }
+                ];
+                return models[getRandomInt(0, models.length - 1)]();
+            } else if (topicIndex === 3) {
+                // Topic 4: Multiplication Properties
+                const models = [
+                    () => {
+                        const n = getRandomInt(15, 85);
+                        return {
+                            topic: currentLang === 'es' ? 'Propiedades (Anulativa)' : 'Properties (Annulative)',
+                            text: currentLang === 'es' ?
+                                `Aplicando la propiedad anulativa de la multiplicación, calcula: <strong>${n} × 0 = ?</strong>` :
+                                `Applying the annulative property of multiplication, calculate: <strong>${n} × 0 = ?</strong>`,
+                            answer: 0
+                        };
+                    },
+                    () => {
+                        const n = getRandomInt(20, 99);
+                        return {
+                            topic: currentLang === 'es' ? 'Propiedades (Modulativa)' : 'Properties (Modulative)',
+                            text: currentLang === 'es' ?
+                                `Aplicando la propiedad modulativa (elemento neutro), calcula: <strong>${n} × 1 = ?</strong>` :
+                                `Applying the modulative property, calculate: <strong>${n} × 1 = ?</strong>`,
+                            answer: n
+                        };
+                    },
+                    () => {
+                        const a = getRandomInt(6, 9), b = getRandomInt(7, 9);
+                        return {
+                            topic: currentLang === 'es' ? 'Propiedades (Conmutativa)' : 'Properties (Commutative)',
+                            text: currentLang === 'es' ?
+                                `Si sabes que ${b} × ${a} = ${a * b}, ¿cuánto es <strong>${a} × ${b}</strong> aplicando la propiedad conmutativa?` :
+                                `If you know ${b} × ${a} = ${a * b}, what is <strong>${a} × ${b}</strong> using the commutative property?`,
+                            answer: a * b
+                        };
+                    }
+                ];
+                return models[getRandomInt(0, models.length - 1)]();
+            } else if (topicIndex === 4) {
+                // Topic 5: Order of Operations
+                const models = [
+                    () => {
+                        const base = getRandomInt(10, 25), m = getRandomInt(2, 5), sub = getRandomInt(1, 4);
+                        const ans = base + (m * (8 - sub));
+                        return {
+                            topic: currentLang === 'es' ? 'Jerarquía de Operaciones' : 'Order of Operations',
+                            text: currentLang === 'es' ?
+                                `Calcula respetando la jerarquía (paréntesis primero): <strong>${base} + ${m} × (8 - ${sub}) = ?</strong>` :
+                                `Calculate following the order of operations (parentheses first): <strong>${base} + ${m} × (8 - ${sub}) = ?</strong>`,
+                            answer: ans
+                        };
+                    },
+                    () => {
+                        const total = getRandomInt(40, 70), m = getRandomInt(2, 4), add = getRandomInt(2, 5);
+                        const ans = total - (m * (3 + add));
+                        return {
+                            topic: currentLang === 'es' ? 'Jerarquía de Operaciones (Finanzas)' : 'Order of Operations (Finance)',
+                            text: currentLang === 'es' ?
+                                `Calcula tu saldo restante: <strong>${total} - (${m} × (3 + ${add})) = ?</strong>` :
+                                `Calculate your remaining balance: <strong>${total} - (${m} × (3 + ${add})) = ?</strong>`,
+                            answer: ans
+                        };
+                    },
+                    () => {
+                        const a = getRandomInt(5, 12), b = getRandomInt(2, 4), c = getRandomInt(3, 6);
+                        const ans = (a + c) * b;
+                        return {
+                            topic: currentLang === 'es' ? 'Jerarquía de Operaciones (Puntajes)' : 'Order of Operations (Scores)',
+                            text: currentLang === 'es' ?
+                                `Calcula los puntos totales del equipo: <strong>(${a} + ${c}) × ${b} = ?</strong>` :
+                                `Calculate total team points: <strong>(${a} + ${c}) × ${b} = ?</strong>`,
+                            answer: ans
+                        };
+                    }
+                ];
+                return models[getRandomInt(0, models.length - 1)]();
+            } else if (topicIndex === 5) {
+                // Topic 6: Financial Literacy & Word Problems
+                const models = [
+                    () => {
+                        const weekly = getRandomInt(2, 5) * 1000, weeks = getRandomInt(4, 8), expense = getRandomInt(5, 12) * 1000;
+                        const ans = (weekly * weeks) - expense;
+                        return {
+                            topic: currentLang === 'es' ? 'Educación Financiera (Ahorro)' : 'Financial Literacy (Savings)',
+                            text: currentLang === 'es' ?
+                                `Ahorras <strong>$${weekly.toLocaleString()} pesos</strong> semanales durante <strong>${weeks} semanas</strong>. Si gastas <strong>$${expense.toLocaleString()} pesos</strong> en un libro, ¿cuánto dinero te queda?` :
+                                `You save <strong>$${weekly.toLocaleString()} pesos</strong> weekly for <strong>${weeks} weeks</strong>. If you spend <strong>$${expense.toLocaleString()} pesos</strong> on a book, how much money do you have left?`,
+                            answer: ans
+                        };
+                    },
+                    () => {
+                        const juiceP = 2500, juiceN = 3, cookieP = 1500, cookieN = 2, paid = 20000;
+                        const ans = paid - ((juiceN * juiceP) + (cookieN * cookieP));
+                        return {
+                            topic: currentLang === 'es' ? 'Educación Financiera (Merienda)' : 'Financial Literacy (Snacks)',
+                            text: currentLang === 'es' ?
+                                `Compras <strong>${juiceN} jugos</strong> a $${juiceP.toLocaleString()} cada uno y <strong>${cookieN} galletas</strong> a $${cookieP.toLocaleString()} cada una. Pagas con un billete de <strong>$${paid.toLocaleString()} pesos</strong>. ¿Cuál es tu cambio?` :
+                                `You buy <strong>${juiceN} juices</strong> at $${juiceP.toLocaleString()} each and <strong>${cookieN} cookies</strong> at $${cookieP.toLocaleString()} each. You pay with a <strong>$${paid.toLocaleString()} peso</strong> bill. What is your change?`,
+                            answer: ans
+                        };
+                    },
+                    () => {
+                        const days = 5, daily = 4000, toy = 12000;
+                        const ans = (daily * days) - toy;
+                        return {
+                            topic: currentLang === 'es' ? 'Educación Financiera (Mesada)' : 'Financial Literacy (Allowance)',
+                            text: currentLang === 'es' ?
+                                `Recibes <strong>$${daily.toLocaleString()} pesos</strong> diarios de mesada durante <strong>${days} días</strong>. Compras un juego por <strong>$${toy.toLocaleString()} pesos</strong>. ¿Cuánto te sobra?` :
+                                `You receive <strong>$${daily.toLocaleString()} pesos</strong> daily allowance for <strong>${days} days</strong>. You buy a toy for <strong>$${toy.toLocaleString()} pesos</strong>. How much is left?`,
+                            answer: ans
+                        };
+                    }
+                ];
+                return models[getRandomInt(0, models.length - 1)]();
+            } else {
+                // Topic 7: Abbreviated Multiplication
+                const models = [
+                    () => {
+                        const n = getRandomInt(15, 95);
+                        return {
+                            topic: currentLang === 'es' ? 'Multiplicación Abreviada (x100)' : 'Abbreviated Multiplication (x100)',
+                            text: currentLang === 'es' ?
+                                `Calcula rápidamente la multiplicación abreviada por 100: <strong>${n} × 100 = ?</strong>` :
+                                `Quickly calculate the abbreviated multiplication by 100: <strong>${n} × 100 = ?</strong>`,
+                            answer: n * 100
+                        };
+                    },
+                    () => {
+                        const n = getRandomInt(120, 450);
+                        return {
+                            topic: currentLang === 'es' ? 'Multiplicación Abreviada (x10)' : 'Abbreviated Multiplication (x10)',
+                            text: currentLang === 'es' ?
+                                `Calcula rápidamente la multiplicación abreviada por 10: <strong>${n} × 10 = ?</strong>` :
+                                `Quickly calculate the abbreviated multiplication by 10: <strong>${n} × 10 = ?</strong>`,
+                            answer: n * 10
+                        };
+                    },
+                    () => {
+                        const n = getRandomInt(12, 48);
+                        return {
+                            topic: currentLang === 'es' ? 'Multiplicación Abreviada (Hojas)' : 'Abbreviated Multiplication (Sheets)',
+                            text: currentLang === 'es' ?
+                                `Un colegio compra <strong>${n} paquetes</strong> de papel con <strong>100 hojas</strong> cada uno. ¿Cuántas hojas hay en total?` :
+                                `A school buys <strong>${n} packs</strong> of paper with <strong>100 sheets</strong> each. How many total sheets are there?`,
+                            answer: n * 100
+                        };
+                    }
+                ];
+                return models[getRandomInt(0, models.length - 1)]();
+            }
+        }
+
+        function initQuiz() {
+            const container = document.getElementById('quiz-questions-container');
+            const questions = [];
+            
+            // Generate one question for each of the 7 topics to ensure full coverage
+            for(let i = 0; i < 7; i++) {
+                questions.push(generateTopicQuestion(i));
+            }
+            
+            // Shuffle questions ("revueltas")
+            const finalQuestions = questions.sort(() => Math.random() - 0.5);
+
+            container.innerHTML = finalQuestions.map((q, idx) => {
+                const canvasId = `sketch-quiz-${idx}`;
+                return `
+                    <div class="exercise-card" data-answer="${q.answer}">
+                        <div class="exercise-header">
+                            <span class="badge">${q.topic}</span>
+                            <span style="font-weight:700; font-size:0.9rem;">#${idx + 1}</span>
+                        </div>
+                        <p>${q.text}</p>
+                        
+                        <div class="drawing-pad-container">
+                            <div class="drawing-toolbar"></div>
+                            <canvas id="${canvasId}" class="sketch-pad" width="600" height="160"></canvas>
+                        </div>
+
+                        <div class="answer-row">
+                            <label>${currentLang === 'es' ? 'Tu respuesta:' : 'Your Answer:'}</label>
+                            <input type="number" class="user-answer-input" placeholder="0" style="width: 140px;">
+                            <button class="btn" onclick="checkQuizAnswer(this)">${t('checkAnswer')}</button>
+                            <button class="btn btn-secondary" onclick="initQuiz()">${t('newNumbers')}</button>
+                        </div>
+                        <div class="feedback"></div>
+                    </div>
+                `;
+            }).join('');
+
+            finalQuestions.forEach((q, idx) => {
+                const canvas = document.getElementById(`sketch-quiz-${idx}`);
+                if(canvas) initDrawingPad(canvas);
+            });
+        }
+
+        window.checkQuizAnswer = function(btn) {
+            const card = btn.closest('.exercise-card');
+            const expected = parseFloat(card.getAttribute('data-answer'));
+            const input = card.querySelector('.user-answer-input');
+            const feedback = card.querySelector('.feedback');
+            const userVal = parseFloat(input.value);
+
+            if(isNaN(userVal)) {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = currentLang === 'es' ? '⚠️ Por favor ingresa un número.' : '⚠️ Please enter a number.';
+                return;
+            }
+
+            if(Math.abs(userVal - expected) < 0.001) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = t('correctMsg');
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = t('incorrectMsg') + ` (${currentLang === 'es' ? 'Correcta:' : 'Correct:'} ${expected})`;
+            }
+        }
+
+        // Initial Load
+        updateUI();
+        initQuiz();
+
+    </script>
+</body>
+</html>
